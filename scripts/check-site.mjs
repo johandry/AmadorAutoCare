@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, extname, join, relative, resolve } from 'node:path';
+import { readAndValidateBusinessFacts } from './validate-business-facts.mjs';
 
 const root = process.cwd();
 const ignoredDirectories = new Set(['.git', 'node_modules']);
@@ -17,7 +18,8 @@ function collectHtmlFiles(directory) {
 }
 
 const files = collectHtmlFiles(root);
-const problems = [];
+const problems = readAndValidateBusinessFacts(join(root, 'docs/business-facts.json'))
+  .map((problem) => `docs/business-facts.json: ${problem}`);
 const externalPattern = /^(?:[a-z]+:|\/\/|#)/i;
 
 for (const file of files) {

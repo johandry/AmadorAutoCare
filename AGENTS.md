@@ -28,6 +28,7 @@ Business facts are not yet verified. Never invent a phone number, address, hours
 |-- assets/css/styles.css      Shared visual system
 |-- assets/js/main.js          Progressive enhancements
 |-- assets/images/             Approved production imagery
+|-- docs/business-facts.json   Approved-content source of truth
 |-- docs/SLICES.md             Ordered implementation backlog
 |-- scripts/check-site.mjs     Dependency-free static checks
 |-- PRD.md                     Product source of truth
@@ -52,6 +53,8 @@ Run from the repository root after relevant changes:
 
 ```bash
 node scripts/check-site.mjs
+node scripts/validate-business-facts.mjs
+node --test tests/business-facts.test.mjs
 node --check assets/js/main.js
 git diff --check
 ```
@@ -64,8 +67,10 @@ For visual work, serve the repository locally and test at 320px, 375px, 768px, 1
 - Home connects both service paths to representative request journeys.
 - Responsive shared styling and accessible mobile navigation are present.
 - Estimate and appointment forms validate locally but intentionally send no data.
-- Business contact details, service claims, approved imagery, form provider, analytics provider, production URL, and Spanish scope remain unresolved.
-- The next slice is **S01 Business Facts and Content Inputs** in [docs/SLICES.md](docs/SLICES.md).
+- The S01 business-facts inventory, approval workflow, validator, and tests are implemented.
+- Every business fact remains pending owner approval, so S01 is blocked and no customer-facing placeholders were replaced.
+- Form provider, analytics provider, production URL, and Spanish scope also remain unresolved.
+- Next action: complete **S01 Business Facts and Content Inputs** with the owner using [docs/BUSINESS_FACTS.md](docs/BUSINESS_FACTS.md).
 
 ## Session Handoff Rule
 

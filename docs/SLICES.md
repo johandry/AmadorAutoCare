@@ -9,7 +9,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | ID | Status | Slice | Demonstrable outcome | Depends on |
 | --- | --- | --- | --- | --- |
 | S00 | DONE | Walking skeleton | All MVP routes load; service paths reach safe demo forms | None |
-| S01 | NEXT | Business facts and content inputs | Verified contact/service data replaces launch-blocking placeholders | Owner input |
+| S01 | BLOCKED | Business facts and content inputs | Verified contact/service data replaces launch-blocking placeholders | Owner input |
 | S02 | READY | Shared shell and navigation | Production-ready responsive header, footer, service navigation, and mobile actions | S01 |
 | S03 | READY | Home conversion journey | Home explains the offer and routes users to the right action | S01, S02 |
 | S04 | READY | Mechanical service journey | Mechanical customers can identify a relevant need and request contact | S01, S02 |
@@ -43,7 +43,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S01: Business Facts and Content Inputs
 
-**Status:** NEXT
+**Status:** BLOCKED on owner input
 
 **Goal:** Establish a dated, owner-approved source of truth before customer-facing feature work.
 
@@ -59,6 +59,8 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 **Deliverable:** Add a structured content inventory under `docs/`, record approval date/source, and replace only globally verified skeleton placeholders.
 
 **Acceptance gate:** Owner explicitly approves every value marked publishable; unknown values remain visibly unresolved.
+
+**Implementation note:** The structured inventory, approval guide, validator, and automated tests are complete. All facts remain `pending`; no website placeholder has been replaced. Populate and approve [business-facts.json](business-facts.json) with the owner to complete this slice.
 
 ## S02: Shared Shell and Navigation
 

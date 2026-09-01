@@ -24,6 +24,8 @@ Open `http://localhost:8000/`.
 
 ```bash
 node scripts/check-site.mjs
+node scripts/validate-business-facts.mjs
+node --test tests/business-facts.test.mjs
 node --check assets/js/main.js
 git diff --check
 ```
