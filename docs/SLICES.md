@@ -48,7 +48,6 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 **Goal:** Establish a dated, owner-approved source of truth before customer-facing feature work.
 
 **Inputs required:**
-
 - Legal/display name, address, phone, monitored email, service area, regular hours, and holiday-hours process.
 - Confirmed mechanical and body/collision services plus excluded work.
 - Emergency, unsafe-to-drive, after-hours, towing, estimate, appointment, and response-time policies.
