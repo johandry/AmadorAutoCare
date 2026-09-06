@@ -10,8 +10,8 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | --- | --- | --- | --- | --- |
 | S00 | DONE | Walking skeleton | All MVP routes load; service paths reach safe demo forms | None |
 | S01 | BLOCKED | Business facts and content inputs | Verified contact/service data replaces launch-blocking placeholders | Owner input |
-| S02 | READY | Shared shell and navigation | Production-ready responsive header, footer, service navigation, and mobile actions | S01 |
-| S03 | READY | Home conversion journey | Home explains the offer and routes users to the right action | S01, S02 |
+| S02 | DONE | Shared shell and navigation | Production-ready responsive header, footer, service navigation, and mobile actions | S01 |
+| S03 | DONE | Home conversion journey | Home explains the offer and routes users to the right action | S01, S02 |
 | S04 | READY | Mechanical service journey | Mechanical customers can identify a relevant need and request contact | S01, S02 |
 | S05 | READY | Body and collision journey | Collision customers understand process and request an estimate | S01, S02 |
 | S06 | READY | Contact and directions | Customers can call, confirm hours, and open accurate directions | S01, S02 |
