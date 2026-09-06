@@ -14,7 +14,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | S03 | DONE | Home conversion journey | Home explains the offer and routes users to the right action | S01, S02 |
 | S04 | DONE | Mechanical service journey | Mechanical customers can identify a relevant need and request contact | S01, S02 |
 | S05 | READY | Body and collision journey | Collision customers understand process and request an estimate | S01, S02 |
-| S06 | READY | Contact and directions | Customers can call, confirm hours, and open accurate directions | S01, S02 |
+| S06 | DONE | Contact and directions | Customers can call, confirm hours, and open accurate directions | S01, S02 |
 | S07 | BLOCKED | Form platform integration | A vetted provider securely accepts test submissions | Owner/provider decision |
 | S08 | BLOCKED | Estimate request workflow | Qualified estimate requests reach staff and receive acknowledgment | S01, S07 |
 | S09 | BLOCKED | Appointment request workflow | Appointment requests reach staff without implying confirmation | S01, S07 |
@@ -103,7 +103,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S06: Contact and Directions
 
-**Status:** READY
+**Status:** DONE
 
 **PRD coverage:** FR-02, FR-03, FR-12.
 

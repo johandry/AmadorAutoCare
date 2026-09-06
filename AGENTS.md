@@ -70,9 +70,10 @@ For visual work, serve the repository locally and test at 320px, 375px, 768px, 1
 - The S01 business-facts inventory, approval workflow, validator, and tests are implemented.
 - The S02 shared shell and navigation is implemented and validated.
 - The S03 home conversion journey is implemented and validated with clear routes to estimate and appointment requests.
-- Every business fact remains pending owner approval, so S01 is blocked and no customer-facing placeholders were replaced.
+- S06 contact and directions is implemented with approved phone, address, hours, service area, customer guidance, and a no-key external map link.
+- Business facts are approved in [docs/business-facts.json](docs/business-facts.json); remaining page content still needs review by its owning slice.
 - Form provider, analytics provider, production URL, and Spanish scope also remain unresolved.
-- Next action: complete **S01 Business Facts and Content Inputs** with the owner using [docs/BUSINESS_FACTS.md](docs/BUSINESS_FACTS.md).
+- Next action: complete the next ready journey slice while keeping published facts synchronized with [docs/business-facts.json](docs/business-facts.json).
 
 ## Session Handoff Rule
 
