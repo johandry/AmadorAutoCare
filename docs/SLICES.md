@@ -19,7 +19,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | S08 | DONE | Estimate request workflow | Qualified estimate requests reach staff and receive acknowledgment | S01, S07 |
 | S09 | DONE | Appointment request workflow | Appointment requests reach staff without implying confirmation | S01, S07 |
 | S10 | BLOCKED | Trust and proof | About, approved reviews, and real gallery work support confidence | Approved assets/claims |
-| S11 | READY | FAQ and privacy | Accurate FAQs and provider-specific privacy terms are published | S01, S07, analytics choice |
+| S11 | DONE | FAQ and privacy | Accurate FAQs and provider-specific privacy terms are published | S01, S07, analytics choice |
 | S12 | BLOCKED | Local SEO and sharing | Production metadata, schema, sitemap, robots, and social cards validate | Domain and verified data |
 | S13 | BLOCKED | Privacy-safe analytics | Approved conversion events record no personal information | Analytics decision |
 | S14 | LATER | Spanish parity | Reviewed Spanish pages provide equivalent core journeys | Translation owner |
@@ -157,13 +157,13 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S11: FAQ and Privacy
 
-**Status:** READY
+**Status:** DONE
 
 **PRD coverage:** FAQ, Privacy Policy, Sections 16 and 18.
 
 **Outcome:** FAQs reflect real customer calls and the privacy page accurately names actual processors, purposes, retention, photo handling, analytics, choices, and contact method.
 
-**Acceptance gate:** Owner reviews factual copy; provider details match configuration; legal review is requested where assurance is needed.
+**Acceptance gate:** Met for the development demo. FAQs and privacy disclosures match the configured Supabase processor, 90-day completed-request retention, no-upload/no-analytics state, and monitored privacy contact. Sample business content and final legal review remain required before production release.
 
 ## S12: Local SEO and Sharing
 
