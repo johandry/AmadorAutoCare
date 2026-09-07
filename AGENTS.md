@@ -70,17 +70,17 @@ For visual work, serve the repository locally and test at 320px, 375px, 768px, 1
 - The S01 business-facts inventory, approval workflow, validator, and tests are implemented.
 - The S02 shared shell and navigation is implemented and validated.
 - The S03 home conversion journey is implemented and validated with clear routes to estimate and appointment requests.
-- S06 is blocked until the owner supplies a verified phone, address, hours, service area, customer guidance, and mapping destination.
-- Only the display name and monitored email are approved in [docs/business-facts.json](docs/business-facts.json). All other business facts remain pending owner confirmation.
+- S06 is blocked until the owner supplies an address, service area, customer guidance, and mapping destination. Phone `502 644 0360`, regular hours Monday-Friday 9:00 AM-5:00 PM, and the listed services are owner-confirmed.
+- Address, credentials, insurance relationships, Google Business Profile, review profiles, and real imagery remain pending owner confirmation. Phone, regular hours, listed services, policies, selected trust facts, controlled domain, content maintenance ownership, and the supplied logo are owner-confirmed.
 - S07 Supabase form integration is implemented and live-validated. Completed requests are retained for 90 days and purged by a scheduled database function. New requests are reviewed at least every four hours, and `service@info.amadorautocare.com` is the monitored privacy contact.
 - S08 estimate qualification fields, accessible error states, and server-side duplicate protection are implemented and live-validated.
 - S09 appointment time-window fields, accessible validation, and server-side scheduling checks are implemented and live-validated.
-- S10 keeps About and Gallery in accessible pending states until authentic, permissioned projects, credentials, warranties, image rights, and review approvals are supplied.
+- S10 keeps About and Gallery in accessible pending states until authentic, permissioned projects, credentials, insurance relationships, image rights, and review approvals are supplied. Experience, warranties, payment methods (cash and credit card), English/Spanish service, and the supplied logo are owner-confirmed.
 - S11 FAQ and privacy disclosures are implemented for the Supabase development-demo flow, including retention, contact, and disabled-feature boundaries. Real business facts and legal review remain required before production release.
 - S12 crawl controls, sitemap, favicon, and Home sharing metadata are implemented for the development demo. `AutoRepair` JSON-LD and final sharing previews remain blocked on real business facts and approved imagery.
 - S14 includes a complete Spanish development-demo route set for core pages and request journeys. The developer approved the generated demo translation; qualified human review and a named maintenance owner remain required before production release.
 - Temporary generic service illustrations appear on Home and service pages only; they are not proof of Amador Auto Care work and must be replaced before production release.
-- Analytics provider, production URL, and Spanish scope also remain unresolved.
+- Cloudflare Web Analytics is selected. Its public beacon token and consent behavior must be configured and verified before production tracking is enabled. Spanish translation review also remains unresolved for production.
 - GitHub Actions validates and deploys the static site to GitHub Pages on every push to `main`; GitHub Pages must be configured to use GitHub Actions as its source.
 - Next action: begin the next ready slice only when explicitly requested, keeping the Supabase request contract and published privacy disclosure synchronized.
 

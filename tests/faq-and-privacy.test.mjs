@@ -20,6 +20,12 @@ test('sets accurate timing and after-hours expectations without promising servic
   assert.doesNotMatch(faqPage, /guaranteed response|24\/?7 emergency service|confirmed appointment/i);
 });
 
+test('lists approved payment options and keeps insurance relationships pending', () => {
+  assert.match(faqPage, /Cash and credit card are accepted\./);
+  assert.match(faqPage, /Insurance relationship information is being prepared\./);
+  assert.doesNotMatch(faqPage, /financing options|Insurance claim coordination|Body shop partner support/i);
+});
+
 test('explains collection purpose, Supabase processing, and completed-request retention', () => {
   assert.match(privacyPage, /contact, vehicle, service, scheduling, and notes details/i);
   assert.match(privacyPage, /only to review and respond to your request/i);
@@ -27,10 +33,12 @@ test('explains collection purpose, Supabase processing, and completed-request re
   assert.match(privacyPage, /Completed service requests are deleted after 90 days/i);
 });
 
-test('provides a privacy contact and describes customer choices without enabling unsupported features', () => {
+test('provides a privacy contact and describes disabled features', () => {
   assert.match(privacyPage, /correct, or request deletion of a service request/i);
   assert.match(privacyPage, /mailto:service@info\.amadorautocare\.com/);
-  assert.match(privacyPage, /Photo uploads and production analytics are not enabled/i);
+  assert.match(privacyPage, /Photo uploads are not enabled/i);
+  assert.match(privacyPage, /Cloudflare Web Analytics is selected for aggregate page analytics/i);
+  assert.match(privacyPage, /remains disabled until its public beacon token is configured/i);
   assert.match(privacyPage, /do not sell service-request information/i);
   assert.doesNotMatch(privacyPage, /Google Analytics|Meta Pixel|file upload/i);
 });

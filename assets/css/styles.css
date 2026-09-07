@@ -99,11 +99,21 @@ h3 {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   color: var(--color-ink);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.2rem;
   font-weight: 700;
   text-decoration: none;
+}
+
+.brand::before {
+  width: 3rem;
+  height: 2.35rem;
+  background: url("../images/logo.webp") center / contain no-repeat;
+  content: "";
 }
 
 .language-link {

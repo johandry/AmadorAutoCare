@@ -2,14 +2,14 @@
 
 ## Demo Business Facts
 
-The values in [business-facts.json](business-facts.json) are development-demo samples. Before production release, replace them with owner-confirmed values for:
+The values in [business-facts.json](business-facts.json) are development-demo samples unless their approval source identifies owner confirmation. Before production release, replace remaining samples with owner-confirmed values for:
 
-- Legal name, phone, address, service area, regular hours, and holiday-hours process.
+- Address.
 - Mechanical, body/collision, and excluded services.
 - Emergency, unsafe-to-drive, after-hours, towing, estimate, appointment, and response-time policies.
-- Experience, credentials, warranties, payment options, insurance relationships, and languages spoken.
-- Controlled domain, Google Business Profile, review profiles, and content maintenance owner.
-- Logo, shop/team images, gallery projects, captions, and review permissions.
+- Credentials and insurance relationships.
+- Google Business Profile and review profiles.
+- Shop/team images, gallery projects, captions, and review permissions.
 
 Record each replacement with a source, approver, and approval date in [business-facts.json](business-facts.json). Do not release the demo values as production business claims.
 
@@ -21,6 +21,10 @@ The following generic images are temporary service illustrations. They do not sh
 | --- | --- |
 | Mechanical service illustration | https://images.unsplash.com/photo-1487754180451-c456f719a1fc |
 | Vehicle-in-shop illustration | https://images.unsplash.com/photo-1492144534655-ae79c964c9d7 |
+
+## Approved Brand Asset
+
+The owner-supplied logo at `images/logo.png` is used as the source for the optimized header mark, web manifest icons, and browser favicon assets in `assets/images/`.
 
 ## Production Release Blocker
 

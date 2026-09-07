@@ -21,7 +21,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | S10 | BLOCKED | Trust and proof | About, approved reviews, and real gallery work support confidence | Approved assets/claims |
 | S11 | DONE | FAQ and privacy | Accurate FAQs and provider-specific privacy terms are published | S01, S07, analytics choice |
 | S12 | READY | Local SEO and sharing | Production metadata, schema, sitemap, robots, and social cards validate | Domain and verified data |
-| S13 | BLOCKED | Privacy-safe analytics | Approved conversion events record no personal information | Analytics decision |
+| S13 | READY | Privacy-safe analytics | Approved conversion events record no personal information | Analytics decision |
 | S14 | READY | Spanish parity | Reviewed Spanish pages provide equivalent core journeys | Translation owner |
 | S15 | LATER | Launch hardening and Pages release | Accessibility, compatibility, performance, and production checks pass | S01-S13 MVP slices |
 
@@ -177,13 +177,13 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S13: Privacy-Safe Analytics
 
-**Status:** BLOCKED
+**Status:** READY
 
 **PRD coverage:** FR-13, Section 18.
 
 **Outcome:** Approved aggregate events capture call, directions, request entry, form state, and optional gallery/language engagement without personal data.
 
-**Acceptance gate:** Event payload inspection shows no form values, vehicle data, filenames, or identifiers; consent behavior matches the privacy decision.
+**Acceptance gate:** Cloudflare Web Analytics is selected. The beacon is disabled until configured, and the local conversion-event contract contains no personal or vehicle data. Configure the beacon token and verify page analytics plus consent behavior before marking this slice DONE.
 
 ## S14: Spanish Parity
 

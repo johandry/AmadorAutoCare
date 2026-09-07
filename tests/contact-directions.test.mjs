@@ -8,19 +8,17 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 const contactPage = fs.readFileSync(path.join(projectRoot, 'contact.html'), 'utf8');
 const businessFacts = JSON.parse(fs.readFileSync(path.join(projectRoot, 'docs/business-facts.json'), 'utf8'));
 
-test('shows the approved demo contact details and direct customer actions', () => {
+test('shows owner-confirmed phone and hours with direct contact actions', () => {
   assert.match(contactPage, new RegExp(businessFacts.business.phone.value.replace(/[()]/g, '\\$&')));
-  assert.match(contactPage, new RegExp(businessFacts.business.address.value));
   assert.match(contactPage, new RegExp(businessFacts.business.regularHours.value));
-  assert.match(contactPage, /href="tel:\+15551234567"/);
+  assert.match(contactPage, /href="tel:\+15026440360"/);
   assert.match(contactPage, /href="mailto:service@info\.amadorautocare\.com"/);
-  assert.match(contactPage, /Get directions/);
 });
 
-test('uses a lightweight external directions action without exposing a map API key', () => {
-  assert.match(contactPage, /https:\/\/www\.google\.com\/maps\/search\/\?api=1&amp;query=123\+Generic\+Street%2C\+Luisville%2C\+KY/);
-  assert.doesNotMatch(contactPage, /maps\.googleapis\.com|apiKey|AIza/i);
-  assert.doesNotMatch(contactPage, /<iframe/i);
+test('withholds the address and directions until an appointment is confirmed', () => {
+  assert.equal(businessFacts.business.address.status, 'pending');
+  assert.match(contactPage, /The shop address is provided after an appointment is confirmed\./);
+  assert.doesNotMatch(contactPage, /123 Generic Street|Luisville|google\.com\/maps|<iframe/i);
 });
 
 test('sets clear holiday, after-hours, and unsafe-to-drive expectations', () => {
@@ -35,9 +33,8 @@ test('keeps service requests distinct from a confirmed appointment', () => {
   assert.doesNotMatch(contactPage, /your appointment is confirmed|appointment booked|book now|guaranteed availability/i);
 });
 
-test('keeps call, directions, and service-request actions usable without JavaScript', () => {
-  assert.match(contactPage, /href="tel:\+15551234567"/);
-  assert.match(contactPage, /href="https:\/\/www\.google\.com\/maps\/search/);
+test('keeps call and service-request actions usable without JavaScript', () => {
+  assert.match(contactPage, /href="tel:\+15026440360"/);
   assert.match(contactPage, /href="estimate\.html"/);
   assert.match(contactPage, /href="appointment\.html"/);
   assert.match(contactPage, /<main id="main-content">/);

@@ -44,5 +44,6 @@ test('preserves the Spanish privacy and no-booking boundaries', () => {
   assert.match(spanishPage('privacy.html'), /Supabase procesa las solicitudes/i);
   assert.match(spanishPage('privacy.html'), /se eliminan despues de 90 dias/i);
   assert.match(spanishPage('privacy.html'), /cargas de fotos y los analiticos de produccion no estan activados/i);
+  assert.match(spanishPage('privacy.html'), /mailto:service@info\.amadorautocare\.com/);
   assert.doesNotMatch(spanishPage('appointment.html'), /cita confirmada|reservacion confirmada/i);
 });

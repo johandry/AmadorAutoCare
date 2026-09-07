@@ -5,7 +5,7 @@ import test from 'node:test';
 const robots = fs.readFileSync(new URL('../robots.txt', import.meta.url), 'utf8');
 const sitemap = fs.readFileSync(new URL('../sitemap.xml', import.meta.url), 'utf8');
 const manifest = JSON.parse(fs.readFileSync(new URL('../site.webmanifest', import.meta.url), 'utf8'));
-const favicon = fs.readFileSync(new URL('../assets/images/favicon.svg', import.meta.url), 'utf8');
+const favicon = fs.readFileSync(new URL('../favicon.ico', import.meta.url));
 const inventory = JSON.parse(fs.readFileSync(new URL('../docs/business-facts.json', import.meta.url), 'utf8'));
 
 const indexedPaths = [
@@ -28,12 +28,15 @@ test('lists every public route once with HTTPS canonical URLs', () => {
 });
 
 test('provides a lightweight branded favicon and web manifest', () => {
-  assert.match(favicon, /<svg/);
+  assert.ok(favicon.length > 0);
   assert.equal(manifest.name, 'Amador Auto Care');
-  assert.equal(manifest.icons[0].src, 'assets/images/favicon.svg');
+  assert.deepEqual(manifest.icons.map((icon) => icon.src), [
+    'assets/images/logo-192.png',
+    'assets/images/logo-512.png'
+  ]);
 });
 
-test('does not publish AutoRepair structured data while the inventory is demo sample content', () => {
-  assert.equal(inventory.review.source, 'Development demo sample values');
+test('does not publish AutoRepair structured data while the inventory review is pending', () => {
+  assert.equal(inventory.review.status, 'pending');
   assert.doesNotMatch(sitemap, /AutoRepair|aggregateRating|openingHours/i);
 });
