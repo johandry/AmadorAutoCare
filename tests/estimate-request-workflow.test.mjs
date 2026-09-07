@@ -27,6 +27,8 @@ test('describes invalid, duplicate, and delivery-failure states in accessible te
   assert.match(estimatePage, /data-request-type="estimate" novalidate/);
   assert.match(mainScript, /form\.addEventListener\('invalid', \(event\) =>/);
   assert.match(mainScript, /\}, true\);/);
+  assert.match(mainScript, /const invalidField = form\.querySelector\(':invalid'\);/);
+  assert.match(mainScript, /invalidField\?\.focus\(\);/);
   assert.match(mainScript, /Please complete \$\{label\?\.trim\(\) \|\| 'the required fields'\} before sending your request\./);
   assert.match(mainScript, /error\?\.message === 'duplicate'/);
   assert.match(mainScript, /This request was already received\. Please call the shop if you need to add information\./);

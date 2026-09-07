@@ -68,7 +68,9 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
 
     const status = form.querySelector('[data-form-status]');
     if (!form.checkValidity()) {
-      form.reportValidity();
+      const invalidField = form.querySelector(':invalid');
+      showValidationError(invalidField);
+      invalidField?.focus();
       return;
     }
 
