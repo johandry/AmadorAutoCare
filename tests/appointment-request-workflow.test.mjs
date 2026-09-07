@@ -21,6 +21,7 @@ test('keeps the requested date and time as a staff-confirmed request, never a bo
 });
 
 test('announces missing appointment fields and restores controls after delivery failures', () => {
+  assert.match(appointmentPage, /src="assets\/js\/main\.js\?v=20260907-appointment" defer/);
   assert.match(appointmentPage, /data-request-type="appointment" novalidate/);
   assert.match(appointmentPage, /data-form-status role="status" aria-live="polite"/);
   assert.match(mainScript, /Please complete \$\{label\?\.trim\(\) \|\| 'the required fields'\} before sending your request\./);
