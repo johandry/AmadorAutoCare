@@ -7,8 +7,8 @@ const config = fs.readFileSync(new URL('../assets/js/analytics-config.js', impor
 const documentation = fs.readFileSync(new URL('../docs/ANALYTICS.md', import.meta.url), 'utf8');
 const privacyPage = fs.readFileSync(new URL('../privacy.html', import.meta.url), 'utf8');
 
-test('keeps Google Analytics disabled until a Measurement ID and visitor consent are present', () => {
-  assert.match(config, /googleMeasurementId: ''/);
+test('loads Google Analytics only after visitor consent when a valid Measurement ID is configured', () => {
+  assert.match(config, /googleMeasurementId: 'G-[A-Z0-9]+'/);
   assert.match(mainScript, /www\.googletagmanager\.com\/gtag\/js\?id=/);
   assert.match(mainScript, /amador-analytics-consent/);
   assert.match(mainScript, /localStorage\.getItem\('amador-analytics-consent'\) !== 'granted'/);
