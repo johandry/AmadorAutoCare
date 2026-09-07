@@ -18,8 +18,12 @@ test('shows the core home conversion journey with both service paths and request
   assert.ok(hrefs.some((href) => href.includes('appointment.html')));
 });
 
-test('keeps the business identity and service discovery honest while pending owner confirmation', () => {
-  assert.match(html, /pending owner confirmation|being verified/i);
+test('shows confirmed contact information while withholding the address', () => {
+  assert.match(html, /502 644 0360/);
+  assert.match(html, /Monday-Friday from 9:00 AM to 5:00 PM/);
+  assert.match(html, /Louisville, KY and surrounding communities/);
+  assert.match(html, /shop address is provided after an appointment is confirmed/i);
+  assert.doesNotMatch(html, /123 Generic Street|Get directions/i);
   assert.doesNotMatch(html, /guaranteed availability|final price|confirmed booking/i);
   assert.doesNotMatch(html, /call now|book now/i);
 });
