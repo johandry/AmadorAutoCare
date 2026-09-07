@@ -82,7 +82,7 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
     const submitButton = form.querySelector('button[type="submit"]');
     if (!serviceRequestEndpoint) {
       if (status) {
-        status.textContent = 'Online requests are not configured yet. Please call the shop for next steps.';
+        status.textContent = 'Online requests are not configured yet. Please email the shop for next steps.';
       }
       return;
     }
@@ -120,8 +120,8 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
     } catch (error) {
       if (status) {
         status.textContent = error?.message === 'duplicate'
-          ? 'This request was already received. Please call the shop if you need to add information.'
-          : 'We could not send your request. Please try again or call the shop for next steps.';
+          ? 'This request was already received. Please email the shop if you need to add information.'
+          : 'We could not send your request. Please try again or email the shop for next steps.';
         status.scrollIntoView({ block: 'nearest' });
       }
     } finally {

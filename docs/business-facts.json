@@ -1,51 +1,51 @@
 {
   "schemaVersion": 1,
   "review": {
-    "status": "approved",
-    "approvedBy": "Owner confirmation",
-    "approvedOn": "2026-09-06",
-    "source": "User approval in editor"
+    "status": "pending",
+    "approvedBy": null,
+    "approvedOn": null,
+    "source": null
   },
   "business": {
-    "legalName": { "status": "approved", "value": "Amador Auto Care LLC", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
+    "legalName": { "status": "pending", "value": null, "approval": null },
     "displayName": { "status": "approved", "value": "Amador Auto Care", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "address": { "status": "approved", "value": "123 Generic Street, Luisville, KY", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "phone": { "status": "approved", "value": "(555) 123-4567", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
+    "address": { "status": "pending", "value": null, "approval": null },
+    "phone": { "status": "pending", "value": null, "approval": null },
     "monitoredEmail": { "status": "approved", "value": "service@info.amadorautocare.com", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "serviceArea": { "status": "approved", "value": ["Louisville, KY", "Surrounding communities"], "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "regularHours": { "status": "approved", "value": "Monday-Friday 8:00 AM-5:00 PM", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "holidayHoursProcess": { "status": "approved", "value": "Holiday hours are communicated by phone and website updates as needed.", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } }
+    "serviceArea": { "status": "pending", "value": null, "approval": null },
+    "regularHours": { "status": "pending", "value": null, "approval": null },
+    "holidayHoursProcess": { "status": "pending", "value": null, "approval": null }
   },
   "services": {
-    "mechanical": { "status": "approved", "value": ["Brake service", "Oil change", "Diagnostics", "Tune-ups"], "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "bodyCollision": { "status": "approved", "value": ["Minor dent repair", "Collision estimates", "Paint matching"], "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "excludedWork": { "status": "approved", "value": ["Major structural repairs", "Custom fabrication"], "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } }
+    "mechanical": { "status": "pending", "value": null, "approval": null },
+    "bodyCollision": { "status": "pending", "value": null, "approval": null },
+    "excludedWork": { "status": "pending", "value": null, "approval": null }
   },
   "policies": {
-    "emergency": { "status": "approved", "value": "Emergency vehicle concerns are reviewed by phone during business hours.", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "unsafeToDrive": { "status": "approved", "value": "If the vehicle is unsafe to drive, customers should call for next steps before operating it.", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "afterHours": { "status": "approved", "value": "After-hours issues are addressed by voicemail and next-business-day follow-up.", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "towing": { "status": "approved", "value": "Towing recommendations are provided based on the customer's location and repair needs.", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "estimate": { "status": "approved", "value": "Estimates are provided before work begins for approved repair plans.", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "appointment": { "status": "approved", "value": "Appointments are scheduled based on repair type and technician availability.", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "responseTime": { "status": "approved", "value": "Response time varies by repair urgency and current shop demand.", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } }
+    "emergency": { "status": "pending", "value": null, "approval": null },
+    "unsafeToDrive": { "status": "pending", "value": null, "approval": null },
+    "afterHours": { "status": "pending", "value": null, "approval": null },
+    "towing": { "status": "pending", "value": null, "approval": null },
+    "estimate": { "status": "pending", "value": null, "approval": null },
+    "appointment": { "status": "pending", "value": null, "approval": null },
+    "responseTime": { "status": "pending", "value": null, "approval": null }
   },
   "trust": {
-    "experience": { "status": "approved", "value": "The shop has years of hands-on experience serving local drivers.", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "credentials": { "status": "approved", "value": ["ASE certified technicians", "Manufacturer training"], "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "warranties": { "status": "approved", "value": ["Parts warranty", "Labor warranty"], "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "paymentOptions": { "status": "approved", "value": ["Cash", "Credit card", "Financing options"], "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "insuranceRelationships": { "status": "approved", "value": ["Insurance claim coordination", "Body shop partner support"], "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "languagesSpoken": { "status": "approved", "value": ["English", "Spanish"], "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } }
+    "experience": { "status": "pending", "value": null, "approval": null },
+    "credentials": { "status": "pending", "value": null, "approval": null },
+    "warranties": { "status": "pending", "value": null, "approval": null },
+    "paymentOptions": { "status": "pending", "value": null, "approval": null },
+    "insuranceRelationships": { "status": "pending", "value": null, "approval": null },
+    "languagesSpoken": { "status": "pending", "value": null, "approval": null }
   },
   "onlinePresence": {
-    "controlledDomain": { "status": "approved", "value": "amadorautocare.com", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "googleBusinessProfile": { "status": "approved", "value": "https://google.com/business/amadorautocare", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "reviewProfiles": { "status": "approved", "value": ["Google Reviews", "Yelp"], "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "contentMaintenanceOwner": { "status": "approved", "value": "Shop owner or designated manager", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } }
+    "controlledDomain": { "status": "pending", "value": null, "approval": null },
+    "googleBusinessProfile": { "status": "pending", "value": null, "approval": null },
+    "reviewProfiles": { "status": "pending", "value": null, "approval": null },
+    "contentMaintenanceOwner": { "status": "pending", "value": null, "approval": null }
   },
   "brandAssets": {
-    "logo": { "status": "approved", "value": "pending_logo_asset", "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } },
-    "imagery": { "status": "approved", "value": ["shop exterior photo", "service bay image"], "approval": { "approvedBy": "Owner confirmation", "approvedOn": "2026-09-06", "source": "User approval in editor" } }
+    "logo": { "status": "pending", "value": null, "approval": null },
+    "imagery": { "status": "pending", "value": null, "approval": null }
   }
 }

@@ -8,36 +8,33 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 const contactPage = fs.readFileSync(path.join(projectRoot, 'contact.html'), 'utf8');
 const businessFacts = JSON.parse(fs.readFileSync(path.join(projectRoot, 'docs/business-facts.json'), 'utf8'));
 
-test('shows the approved contact details and direct customer actions', () => {
-  assert.match(contactPage, new RegExp(businessFacts.business.phone.value.replace(/[()]/g, '\\$&')));
-  assert.match(contactPage, new RegExp(businessFacts.business.address.value));
-  assert.match(contactPage, new RegExp(businessFacts.business.regularHours.value));
-  assert.match(contactPage, /href="tel:\+15551234567"/);
+test('shows the only approved contact detail and usable email action', () => {
+  assert.equal(businessFacts.business.displayName.status, 'approved');
+  assert.equal(businessFacts.business.monitoredEmail.status, 'approved');
+  assert.match(contactPage, new RegExp(businessFacts.business.monitoredEmail.value));
   assert.match(contactPage, /href="mailto:service@info\.amadorautocare\.com"/);
-  assert.match(contactPage, /Get directions/);
 });
 
-test('uses a lightweight external directions action without exposing a map API key', () => {
-  assert.match(contactPage, /https:\/\/www\.google\.com\/maps\/search\/\?api=1&amp;query=123\+Generic\+Street%2C\+Luisville%2C\+KY/);
-  assert.doesNotMatch(contactPage, /maps\.googleapis\.com|apiKey|AIza/i);
-  assert.doesNotMatch(contactPage, /<iframe/i);
+test('keeps phone, address, hours, and directions unavailable until owner confirmation', () => {
+  for (const field of ['phone', 'address', 'regularHours', 'serviceArea']) {
+    assert.equal(businessFacts.business[field].status, 'pending');
+  }
+  assert.match(contactPage, /Phone, address, hours, and directions will be published after owner confirmation\./);
+  assert.doesNotMatch(contactPage, /href="tel:|google\.com\/maps|<iframe/i);
 });
 
-test('sets clear holiday, after-hours, and unsafe-to-drive expectations', () => {
-  assert.match(contactPage, /Holiday hours are communicated by phone and website updates as needed\./);
-  assert.match(contactPage, /After-hours issues are addressed by voicemail and next-business-day follow-up\./);
-  assert.match(contactPage, /If your vehicle is unsafe to drive, call for next steps before operating it\./);
-  assert.doesNotMatch(contactPage, /24\/?7|emergency service available/i);
+test('does not make unverified emergency, after-hours, or response-time promises', () => {
+  assert.match(contactPage, /Hours, holiday scheduling, after-hours guidance, and emergency guidance are pending owner confirmation\./);
+  assert.doesNotMatch(contactPage, /24\/?7|emergency service available|next-business-day follow-up/i);
 });
 
 test('keeps service requests distinct from a confirmed appointment', () => {
-  assert.match(contactPage, /scheduled based on repair type and technician availability/i);
-  assert.doesNotMatch(contactPage, /confirmed appointment|book now|guaranteed availability/i);
+  assert.match(contactPage, /Appointment availability and response-time expectations are pending owner confirmation\./);
+  assert.doesNotMatch(contactPage, /your appointment is confirmed|appointment booked|book now|guaranteed availability/i);
 });
 
-test('keeps call, directions, and service-request actions usable without JavaScript', () => {
-  assert.match(contactPage, /href="tel:\+15551234567"/);
-  assert.match(contactPage, /href="https:\/\/www\.google\.com\/maps\/search/);
+test('keeps email and service-request actions usable without JavaScript', () => {
+  assert.match(contactPage, /href="mailto:service@info\.amadorautocare\.com"/);
   assert.match(contactPage, /href="estimate\.html"/);
   assert.match(contactPage, /href="appointment\.html"/);
   assert.match(contactPage, /<main id="main-content">/);

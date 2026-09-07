@@ -6,17 +6,12 @@ const aboutPage = fs.readFileSync(new URL('../about.html', import.meta.url), 'ut
 const galleryPage = fs.readFileSync(new URL('../gallery.html', import.meta.url), 'utf8');
 const businessFacts = JSON.parse(fs.readFileSync(new URL('../docs/business-facts.json', import.meta.url), 'utf8'));
 
-test('publishes only approved trust indicators on the About page', () => {
-  const approvedIndicators = [
-    ...businessFacts.trust.credentials.value,
-    ...businessFacts.trust.warranties.value,
-    'Service in English and Spanish'
-  ];
-
-  for (const indicator of approvedIndicators) {
-    assert.match(aboutPage, new RegExp(indicator), `${indicator} must come from the approved inventory`);
+test('keeps trust indicators pending until owner-provided evidence is available', () => {
+  for (const fact of Object.values(businessFacts.trust)) {
+    assert.equal(fact.status, 'pending');
   }
-  assert.match(aboutPage, /hands-on experience serving local drivers/i);
+  assert.match(aboutPage, /Experience, credentials, warranties, languages, and community information will be added only with owner-provided evidence\./);
+  assert.doesNotMatch(aboutPage, /ASE certified|Manufacturer training|Parts warranty|Labor warranty|English and Spanish/i);
 });
 
 test('provides a contact path from the trust journey without unsupported claims', () => {

@@ -18,8 +18,8 @@ test('sends estimate and appointment forms through the configured service endpoi
 });
 
 test('keeps the request flow recoverable when endpoint configuration or delivery fails', () => {
-  assert.match(mainScript, /Online requests are not configured yet/);
-  assert.match(mainScript, /We could not send your request/);
+  assert.match(mainScript, /Online requests are not configured yet\. Please email the shop for next steps\./);
+  assert.match(mainScript, /We could not send your request\. Please try again or email the shop for next steps\./);
   assert.match(mainScript, /submitButton\?\.setAttribute\('disabled'/);
   assert.match(mainScript, /finally \{/);
 });

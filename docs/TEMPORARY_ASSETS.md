@@ -1,4 +1,26 @@
-# Temporary Illustrations
+# Temporary Content and Illustrations
+
+## Verified Business Facts
+
+Only these values are approved for public use:
+
+- Display name: Amador Auto Care
+- Monitored email: service@info.amadorautocare.com
+
+## Temporary Business Facts
+
+Before production release, obtain owner confirmation for:
+
+- Legal name, phone, address, service area, regular hours, and holiday-hours process.
+- Mechanical, body/collision, and excluded services.
+- Emergency, unsafe-to-drive, after-hours, towing, estimate, appointment, and response-time policies.
+- Experience, credentials, warranties, payment options, insurance relationships, and languages spoken.
+- Controlled domain, Google Business Profile, review profiles, and content maintenance owner.
+- Logo, shop/team images, gallery projects, captions, and review permissions.
+
+Do not publish any temporary business fact as a customer-facing claim. Record approved values with a source, approver, and approval date in [business-facts.json](business-facts.json).
+
+## Temporary Illustrations
 
 The following generic images are temporary service illustrations. They do not show Amador Auto Care, its staff, its facility, or its completed work.
 

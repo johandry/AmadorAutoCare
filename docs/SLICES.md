@@ -14,7 +14,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | S03 | DONE | Home conversion journey | Home explains the offer and routes users to the right action | S01, S02 |
 | S04 | DONE | Mechanical service journey | Mechanical customers can identify a relevant need and request contact | S01, S02 |
 | S05 | READY | Body and collision journey | Collision customers understand process and request an estimate | S01, S02 |
-| S06 | DONE | Contact and directions | Customers can call, confirm hours, and open accurate directions | S01, S02 |
+| S06 | BLOCKED | Contact and directions | Customers can call, confirm hours, and open accurate directions | S01, S02 |
 | S07 | DONE | Form platform integration | A vetted provider securely accepts test submissions | Owner/provider decision |
 | S08 | DONE | Estimate request workflow | Qualified estimate requests reach staff and receive acknowledgment | S01, S07 |
 | S09 | DONE | Appointment request workflow | Appointment requests reach staff without implying confirmation | S01, S07 |
@@ -103,13 +103,13 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S06: Contact and Directions
 
-**Status:** DONE
+**Status:** BLOCKED
 
 **PRD coverage:** FR-02, FR-03, FR-12.
 
 **Outcome:** Customers see consistent phone, address, hours, service area, emergency guidance, and an external directions action.
 
-**Acceptance gate:** Contact facts match the approved source and Google Business Profile; phone and mapping actions work on mobile and desktop.
+**Acceptance gate:** Contact facts match the approved source and Google Business Profile; phone and mapping actions work on mobile and desktop. Blocked until the owner confirms phone, address, hours, service area, emergency guidance, and mapping destination.
 
 ## S07: Form Platform Integration
 
@@ -153,7 +153,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 **Acceptance gate:** Rights and claims are documented; responsive images have dimensions and suitable alternative text; gallery empty state remains if assets are insufficient.
 
-**Implementation note:** Approved credential and warranty categories are published on About. Temporary stock service illustrations are labeled and documented in [TEMPORARY_ASSETS.md](TEMPORARY_ASSETS.md); they must be replaced before production release. Gallery remains an explicit empty state until authentic, permissioned projects and image rights are supplied.
+**Implementation note:** Temporary stock service illustrations are labeled and documented in [TEMPORARY_ASSETS.md](TEMPORARY_ASSETS.md); they must be replaced before production release. About and Gallery retain explicit pending states until owner-provided credentials, warranties, projects, and image rights are supplied.
 
 ## S11: FAQ and Privacy
 
