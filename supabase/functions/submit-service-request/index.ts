@@ -7,9 +7,13 @@ const supabase = createClient(
 );
 
 const requiredFields = {
-  estimate: ['name', 'email', 'vehicle', 'category', 'description'],
+  estimate: ['name', 'email', 'vehicle', 'category', 'preferredContact', 'safeToDrive', 'description'],
   appointment: ['name', 'phone', 'vehicle', 'date', 'service']
 };
+
+const estimateCategories = new Set(['Mechanical', 'Body or collision', 'Not sure']);
+const preferredContactMethods = new Set(['Phone', 'Email']);
+const driveSafetyResponses = new Set(['Yes', 'No', 'Not sure']);
 
 function response(body: Record<string, string>, status: number, origin: string) {
   const headers = {
@@ -67,6 +71,17 @@ Deno.serve(async (request) => {
       return response({ error: 'Required information is missing' }, 400, permittedOrigin);
     }
 
+    if (
+      requestType === 'estimate' && (
+        !/^\S+@\S+\.\S+$/.test(cleanFields.email) ||
+        !estimateCategories.has(cleanFields.category) ||
+        !preferredContactMethods.has(cleanFields.preferredContact) ||
+        !driveSafetyResponses.has(cleanFields.safeToDrive)
+      )
+    ) {
+      return response({ error: 'Invalid estimate request' }, 400, permittedOrigin);
+    }
+
     const { error } = await supabase.rpc('submit_service_request', {
       p_request_type: requestType,
       p_fields: cleanFields,
@@ -75,6 +90,9 @@ Deno.serve(async (request) => {
 
     if (error) {
       console.error('Request submission failed', error.message);
+      if (error.message.includes('duplicate request')) {
+        return response({ error: 'Duplicate request' }, 409, permittedOrigin);
+      }
       return response({ error: 'Unable to submit request' }, 503, permittedOrigin);
     }
 

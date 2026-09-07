@@ -15,7 +15,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | S04 | DONE | Mechanical service journey | Mechanical customers can identify a relevant need and request contact | S01, S02 |
 | S05 | READY | Body and collision journey | Collision customers understand process and request an estimate | S01, S02 |
 | S06 | DONE | Contact and directions | Customers can call, confirm hours, and open accurate directions | S01, S02 |
-| S07 | BLOCKED | Form platform integration | A vetted provider securely accepts test submissions | Owner/provider decision |
+| S07 | DONE | Form platform integration | A vetted provider securely accepts test submissions | Owner/provider decision |
 | S08 | BLOCKED | Estimate request workflow | Qualified estimate requests reach staff and receive acknowledgment | S01, S07 |
 | S09 | BLOCKED | Appointment request workflow | Appointment requests reach staff without implying confirmation | S01, S07 |
 | S10 | BLOCKED | Trust and proof | About, approved reviews, and real gallery work support confidence | Approved assets/claims |
@@ -113,25 +113,25 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S07: Form Platform Integration
 
-**Status:** BLOCKED
+**Status:** DONE
 
 **PRD coverage:** FR-05 through FR-10, privacy/security requirements.
 
-**Decision:** Supabase is the selected form processor. Configure its Edge Function, staff workflow, retention, and consent decisions as documented in [SUPABASE.md](SUPABASE.md).
+**Decision:** Supabase is the selected form processor. Its Edge Function, retention policy, review workflow, and consent copy are configured as documented in [SUPABASE.md](SUPABASE.md).
 
 **Outcome:** A minimal non-production test form reaches a monitored staff channel with spam controls and a phone fallback.
 
-**Acceptance gate:** Owner approves provider, recipients, retention, consent copy, expected response time, and photo-upload policy; success and failure tests pass.
+**Acceptance gate:** Met. Live success, invalid, honeypot, rate-limit, blocked-origin, and offline failure paths pass. New requests are reviewed at least every four hours; completed requests are retained for 90 days.
 
 ## S08: Estimate Request Workflow
 
-**Status:** BLOCKED
+**Status:** READY
 
 **PRD coverage:** FR-05, FR-07 through FR-10, FR-17.
 
 **Outcome:** A customer submits only useful contact, vehicle, category, damage/symptom, safety, and preferred-contact details; staff receives one request; the customer receives accurate next steps.
 
-**Acceptance gate:** Valid, invalid, duplicate, offline, rejected, and provider-down paths pass. No analytics event contains field values. Upload limits and consent pass if photos are enabled.
+**Acceptance gate:** Local validation passes. Apply the S08 migration, redeploy the Edge Function, and live-test valid, invalid, duplicate, offline, rejected, and provider-down paths before marking this slice DONE. No analytics event contains field values. Photo uploads are not enabled.
 
 ## S09: Appointment Request Workflow
 

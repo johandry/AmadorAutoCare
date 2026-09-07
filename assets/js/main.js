@@ -47,11 +47,23 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    if (!(form instanceof HTMLFormElement) || !form.reportValidity()) {
+    if (!(form instanceof HTMLFormElement)) {
       return;
     }
 
     const status = form.querySelector('[data-form-status]');
+    if (!form.reportValidity()) {
+      const invalidField = form.querySelector(':invalid');
+      const label = invalidField?.id
+        ? form.querySelector(`label[for="${invalidField.id}"]`)?.textContent
+        : invalidField?.closest('fieldset')?.querySelector('legend')?.textContent;
+      if (status) {
+        status.textContent = `Please complete ${label?.trim() || 'the required fields'} before sending your request.`;
+      }
+      invalidField?.focus();
+      return;
+    }
+
     const submitButton = form.querySelector('button[type="submit"]');
     if (!serviceRequestEndpoint) {
       if (status) {
@@ -75,6 +87,10 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
         })
       });
 
+      if (response.status === 409) {
+        throw new Error('duplicate');
+      }
+
       if (!response.ok) {
         throw new Error('Request failed');
       }
@@ -86,9 +102,11 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
         status.scrollIntoView({ block: 'nearest' });
       }
       form.reset();
-    } catch {
+    } catch (error) {
       if (status) {
-        status.textContent = 'We could not send your request. Please try again or call the shop for next steps.';
+        status.textContent = error instanceof Error && error.message === 'duplicate'
+          ? 'This request was already received. Please call the shop if you need to add information.'
+          : 'We could not send your request. Please try again or call the shop for next steps.';
         status.scrollIntoView({ block: 'nearest' });
       }
     } finally {
