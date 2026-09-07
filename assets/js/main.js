@@ -44,6 +44,21 @@ if (navigationToggle && primaryNavigation) {
 const serviceRequestEndpoint = window.AMADOR_AUTO_CARE_CONFIG?.serviceRequestEndpoint;
 
 document.querySelectorAll('[data-service-request-form]').forEach((form) => {
+  const showValidationError = (invalidField) => {
+    const status = form.querySelector('[data-form-status]');
+    const label = invalidField?.id
+      ? form.querySelector(`label[for="${invalidField.id}"]`)?.textContent
+      : invalidField?.closest('fieldset')?.querySelector('legend')?.textContent;
+
+    if (status) {
+      status.textContent = `Please complete ${label?.trim() || 'the required fields'} before sending your request.`;
+    }
+  };
+
+  form.addEventListener('invalid', (event) => {
+    showValidationError(event.target);
+  }, true);
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -52,15 +67,8 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
     }
 
     const status = form.querySelector('[data-form-status]');
-    if (!form.reportValidity()) {
-      const invalidField = form.querySelector(':invalid');
-      const label = invalidField?.id
-        ? form.querySelector(`label[for="${invalidField.id}"]`)?.textContent
-        : invalidField?.closest('fieldset')?.querySelector('legend')?.textContent;
-      if (status) {
-        status.textContent = `Please complete ${label?.trim() || 'the required fields'} before sending your request.`;
-      }
-      invalidField?.focus();
+    if (!form.checkValidity()) {
+      form.reportValidity();
       return;
     }
 
@@ -104,7 +112,7 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
       form.reset();
     } catch (error) {
       if (status) {
-        status.textContent = error instanceof Error && error.message === 'duplicate'
+        status.textContent = error?.message === 'duplicate'
           ? 'This request was already received. Please call the shop if you need to add information.'
           : 'We could not send your request. Please try again or call the shop for next steps.';
         status.scrollIntoView({ block: 'nearest' });
