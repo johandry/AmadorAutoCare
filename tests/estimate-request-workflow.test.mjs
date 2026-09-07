@@ -23,6 +23,7 @@ test('keeps safety and estimate boundaries clear without offering photo upload',
 });
 
 test('describes invalid, duplicate, and delivery-failure states in accessible text', () => {
+  assert.match(estimatePage, /src="assets\/js\/main\.js\?v=20260907" defer/);
   assert.match(estimatePage, /data-request-type="estimate" novalidate/);
   assert.match(mainScript, /form\.addEventListener\('invalid', \(event\) =>/);
   assert.match(mainScript, /\}, true\);/);
