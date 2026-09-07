@@ -16,8 +16,8 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | S05 | READY | Body and collision journey | Collision customers understand process and request an estimate | S01, S02 |
 | S06 | DONE | Contact and directions | Customers can call, confirm hours, and open accurate directions | S01, S02 |
 | S07 | DONE | Form platform integration | A vetted provider securely accepts test submissions | Owner/provider decision |
-| S08 | BLOCKED | Estimate request workflow | Qualified estimate requests reach staff and receive acknowledgment | S01, S07 |
-| S09 | BLOCKED | Appointment request workflow | Appointment requests reach staff without implying confirmation | S01, S07 |
+| S08 | DONE | Estimate request workflow | Qualified estimate requests reach staff and receive acknowledgment | S01, S07 |
+| S09 | READY | Appointment request workflow | Appointment requests reach staff without implying confirmation | S01, S07 |
 | S10 | BLOCKED | Trust and proof | About, approved reviews, and real gallery work support confidence | Approved assets/claims |
 | S11 | READY | FAQ and privacy | Accurate FAQs and provider-specific privacy terms are published | S01, S07, analytics choice |
 | S12 | BLOCKED | Local SEO and sharing | Production metadata, schema, sitemap, robots, and social cards validate | Domain and verified data |
@@ -63,7 +63,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S02: Shared Shell and Navigation
 
-**Status:** READY
+**Status:** DONE
 
 **PRD coverage:** FR-01, FR-02, FR-04, FR-12, FR-15.
 
@@ -125,23 +125,23 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S08: Estimate Request Workflow
 
-**Status:** READY
+**Status:** DONE
 
 **PRD coverage:** FR-05, FR-07 through FR-10, FR-17.
 
 **Outcome:** A customer submits only useful contact, vehicle, category, damage/symptom, safety, and preferred-contact details; staff receives one request; the customer receives accurate next steps.
 
-**Acceptance gate:** Local validation passes. Apply the S08 migration, redeploy the Edge Function, and live-test valid, invalid, duplicate, offline, rejected, and provider-down paths before marking this slice DONE. No analytics event contains field values. Photo uploads are not enabled.
+**Acceptance gate:** Met. The deployed workflow accepts qualified estimates once, announces invalid fields and focuses the first invalid field, rejects duplicates, and shows recoverable offline, rate-limit, and provider-failure states. No analytics event contains field values. Photo uploads are not enabled.
 
 ## S09: Appointment Request Workflow
 
-**Status:** BLOCKED
+**Status:** READY
 
 **PRD coverage:** FR-06 through FR-09.
 
 **Outcome:** A customer requests a service window and receives repeated notice that no appointment exists until staff confirms it.
 
-**Acceptance gate:** Valid and failure paths pass; staff delivery is verified; no UI state calls the request “booked” or “confirmed.”
+**Acceptance gate:** Local validation passes. Redeploy the Edge Function and live-test valid, invalid past-date, duplicate, and offline paths before marking this slice DONE. No UI state calls the request “booked” or “confirmed.”
 
 ## S10: Trust and Proof
 

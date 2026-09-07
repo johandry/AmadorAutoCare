@@ -12,6 +12,7 @@ Supabase is the selected processor for estimate and appointment requests. The br
 6. Mark a request `completed` and set `completed_at` when its work is finished. Completed requests are deleted after 90 days; active requests are retained until completion.
 7. Review `service_requests` in the Supabase Dashboard at least every four hours. Email requests or privacy questions to `service@info.amadorautocare.com`.
 8. Apply `supabase/migrations/20260907000000_prevent_duplicate_service_requests.sql` and redeploy `submit-service-request` after changing estimate request validation.
+9. Redeploy `submit-service-request` after changing appointment request validation, then test a valid appointment request and an invalid past-date request from the deployed site.
 
 The function uses the Supabase service-role key only in its server environment. Do not place service-role credentials in the repository, browser configuration, or GitHub Pages settings.
 

@@ -8,12 +8,13 @@ const supabase = createClient(
 
 const requiredFields = {
   estimate: ['name', 'email', 'vehicle', 'category', 'preferredContact', 'safeToDrive', 'description'],
-  appointment: ['name', 'phone', 'vehicle', 'date', 'service']
+  appointment: ['name', 'phone', 'vehicle', 'date', 'timeWindow', 'service']
 };
 
 const estimateCategories = new Set(['Mechanical', 'Body or collision', 'Not sure']);
 const preferredContactMethods = new Set(['Phone', 'Email']);
 const driveSafetyResponses = new Set(['Yes', 'No', 'Not sure']);
+const appointmentTimeWindows = new Set(['Morning', 'Afternoon', 'Either']);
 
 function response(body: Record<string, string>, status: number, origin: string) {
   const headers = {
@@ -80,6 +81,16 @@ Deno.serve(async (request) => {
       )
     ) {
       return response({ error: 'Invalid estimate request' }, 400, permittedOrigin);
+    }
+
+    if (
+      requestType === 'appointment' && (
+        !appointmentTimeWindows.has(cleanFields.timeWindow) ||
+        !/^\d{4}-\d{2}-\d{2}$/.test(cleanFields.date) ||
+        cleanFields.date < new Date().toISOString().slice(0, 10)
+      )
+    ) {
+      return response({ error: 'Invalid appointment request' }, 400, permittedOrigin);
     }
 
     const { error } = await supabase.rpc('submit_service_request', {

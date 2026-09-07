@@ -73,10 +73,11 @@ For visual work, serve the repository locally and test at 320px, 375px, 768px, 1
 - S06 contact and directions is implemented with approved phone, address, hours, service area, customer guidance, and a no-key external map link.
 - Business facts are approved in [docs/business-facts.json](docs/business-facts.json); remaining page content still needs review by its owning slice.
 - S07 Supabase form integration is implemented and live-validated. Completed requests are retained for 90 days and purged by a scheduled database function. New requests are reviewed at least every four hours, and `service@info.amadorautocare.com` is the monitored privacy contact.
-- S08 estimate qualification fields, accessible error states, and server-side duplicate protection are implemented locally. Its migration and Edge Function must be deployed and live-validated before the slice is complete.
+- S08 estimate qualification fields, accessible error states, and server-side duplicate protection are implemented and live-validated.
+- S09 appointment time-window fields, accessible validation, and server-side scheduling checks are implemented locally. The Edge Function must be redeployed and the workflow live-validated before the slice is complete.
 - Analytics provider, production URL, and Spanish scope also remain unresolved.
 - GitHub Actions validates and deploys the static site to GitHub Pages on every push to `main`; GitHub Pages must be configured to use GitHub Actions as its source.
-- Next action: deploy and live-validate S08 Estimate Request Workflow, keeping the Supabase request contract and published privacy disclosure synchronized.
+- Next action: deploy and live-validate S09 Appointment Request Workflow, keeping the Supabase request contract and published privacy disclosure synchronized.
 
 ## Session Handoff Rule
 

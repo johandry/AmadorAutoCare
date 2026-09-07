@@ -42,6 +42,11 @@ if (navigationToggle && primaryNavigation) {
 }
 
 const serviceRequestEndpoint = window.AMADOR_AUTO_CARE_CONFIG?.serviceRequestEndpoint;
+const today = new Date().toISOString().slice(0, 10);
+
+document.querySelectorAll('input[type="date"][name="date"]').forEach((input) => {
+  input.min = today;
+});
 
 document.querySelectorAll('[data-service-request-form]').forEach((form) => {
   const showValidationError = (invalidField) => {
