@@ -1,5 +1,80 @@
 const navigationToggle = document.querySelector('.nav-toggle');
 const primaryNavigation = document.querySelector('#primary-navigation');
+const analyticsEvents = new Set([
+  'click_call',
+  'click_directions',
+  'click_estimate',
+  'click_appointment',
+  'form_start',
+  'form_submit',
+  'form_error',
+  'language_change'
+]);
+
+function trackAnalyticsEvent(name, details = {}) {
+  if (!analyticsEvents.has(name)) {
+    return;
+  }
+
+  const context = { page: globalThis.location?.pathname ?? '' };
+  if (typeof details.form === 'string') {
+    context.form = details.form;
+  }
+  if (typeof details.source === 'string') {
+    context.source = details.source;
+  }
+
+  document.dispatchEvent(new CustomEvent('amadoranalytics', {
+    detail: { name, context }
+  }));
+}
+
+function loadCloudflareAnalytics() {
+  const configScript = [...document.querySelectorAll('script')]
+    .find((script) => script.src.endsWith('/assets/js/main.js') || script.src.includes('/assets/js/main.js?'));
+
+  if (!configScript || document.querySelector('[data-amador-analytics-config]')) {
+    return;
+  }
+
+  const script = document.createElement('script');
+  script.src = new URL('analytics-config.js', configScript.src).href;
+  script.dataset.amadorAnalyticsConfig = '';
+  script.onload = () => {
+    const token = window.AMADOR_ANALYTICS_CONFIG?.cloudflareBeaconToken;
+    if (!token || document.querySelector('[data-cf-beacon]')) {
+      return;
+    }
+
+    const beacon = document.createElement('script');
+    beacon.defer = true;
+    beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    beacon.dataset.cfBeacon = JSON.stringify({ token });
+    document.head.append(beacon);
+  };
+  document.head.append(script);
+}
+
+loadCloudflareAnalytics();
+
+function trackAnalyticsLinkClick(event) {
+  const link = event.target.closest?.('a[href]');
+  if (!link) {
+    return;
+  }
+
+  const href = link.getAttribute('href') ?? '';
+  const eventName = href.startsWith('tel:') ? 'click_call'
+    : href.includes('directions') || href.includes('maps') ? 'click_directions'
+      : href.includes('estimate.html') ? 'click_estimate'
+        : href.includes('appointment.html') ? 'click_appointment'
+          : link.hreflang === 'es' || link.hreflang === 'en' ? 'language_change'
+            : null;
+
+  if (eventName) {
+    trackAnalyticsEvent(eventName, { source: globalThis.location?.pathname ?? '' });
+  }
+}
 
 if (navigationToggle && primaryNavigation) {
   const closeNavigation = () => {
@@ -41,15 +116,26 @@ if (navigationToggle && primaryNavigation) {
   });
 }
 
+document.addEventListener('click', trackAnalyticsLinkClick);
+
 const serviceRequestEndpoint = window.AMADOR_AUTO_CARE_CONFIG?.serviceRequestEndpoint;
 const today = new Date().toISOString().slice(0, 10);
-const isSpanish = document.documentElement.lang === 'es';
+const isSpanish = document.documentElement?.lang === 'es';
 
 document.querySelectorAll('input[type="date"][name="date"]').forEach((input) => {
   input.min = today;
 });
 
 document.querySelectorAll('[data-service-request-form]').forEach((form) => {
+  let hasStarted = false;
+
+  form.addEventListener('focusin', () => {
+    if (!hasStarted) {
+      hasStarted = true;
+      trackAnalyticsEvent('form_start', { form: form.dataset.requestType });
+    }
+  });
+
   const showValidationError = (invalidField) => {
     const status = form.querySelector('[data-form-status]');
     const label = invalidField?.id
@@ -79,6 +165,7 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
       const invalidField = form.querySelector(':invalid');
       showValidationError(invalidField);
       invalidField?.focus();
+      trackAnalyticsEvent('form_error', { form: form.dataset.requestType });
       return;
     }
 
@@ -122,6 +209,7 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
         status.scrollIntoView({ block: 'nearest' });
       }
       form.reset();
+      trackAnalyticsEvent('form_submit', { form: form.dataset.requestType });
     } catch (error) {
       if (status) {
         status.textContent = error?.message === 'duplicate'
@@ -129,6 +217,7 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
           : (isSpanish ? 'No pudimos enviar su solicitud. Intentelo de nuevo o llame al taller para conocer los proximos pasos.' : 'We could not send your request. Please try again or call the shop for next steps.');
         status.scrollIntoView({ block: 'nearest' });
       }
+      trackAnalyticsEvent('form_error', { form: form.dataset.requestType });
     } finally {
       submitButton?.removeAttribute('disabled');
     }

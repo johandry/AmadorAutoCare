@@ -40,6 +40,7 @@ jobs:
           node --test tests/local-seo.test.mjs
           node --test tests/mechanical-journey.test.mjs
           node --test tests/navigation-shell.test.mjs
+          node --test tests/privacy-safe-analytics.test.mjs
           node --test tests/spanish-parity.test.mjs
           node --test tests/supabase-integration.test.mjs
           node --test tests/temporary-assets.test.mjs
