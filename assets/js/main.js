@@ -47,7 +47,7 @@ function loadCloudflareAnalytics() {
     }
 
     const beacon = document.createElement('script');
-    beacon.defer = true;
+    beacon.type = 'module';
     beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
     beacon.dataset.cfBeacon = JSON.stringify({ token });
     document.head.append(beacon);

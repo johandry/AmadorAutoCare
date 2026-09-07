@@ -7,9 +7,10 @@ const config = fs.readFileSync(new URL('../assets/js/analytics-config.js', impor
 const documentation = fs.readFileSync(new URL('../docs/ANALYTICS.md', import.meta.url), 'utf8');
 const privacyPage = fs.readFileSync(new URL('../privacy.html', import.meta.url), 'utf8');
 
-test('keeps Cloudflare analytics disabled until a public beacon token is configured', () => {
-  assert.match(config, /cloudflareBeaconToken: ''/);
+test('configures Cloudflare analytics with the public beacon token', () => {
+  assert.match(config, /cloudflareBeaconToken: '828f5a8b1b7f44b3840c008d6e550797'/);
   assert.match(mainScript, /static\.cloudflareinsights\.com\/beacon\.min\.js/);
+  assert.match(mainScript, /beacon\.type = 'module'/);
   assert.match(mainScript, /if \(!token/);
 });
 

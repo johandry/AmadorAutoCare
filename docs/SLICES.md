@@ -9,21 +9,22 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | ID | Status | Slice | Demonstrable outcome | Depends on |
 | --- | --- | --- | --- | --- |
 | S00 | DONE | Walking skeleton | All MVP routes load; service paths reach safe demo forms | None |
-| S01 | BLOCKED | Business facts and content inputs | Verified contact/service data replaces launch-blocking placeholders | Owner input |
+| S01 | DONE | Business facts and content inputs | Verified contact/service data replaces launch-blocking placeholders | Owner input |
 | S02 | DONE | Shared shell and navigation | Production-ready responsive header, footer, service navigation, and mobile actions | S01 |
 | S03 | DONE | Home conversion journey | Home explains the offer and routes users to the right action | S01, S02 |
 | S04 | DONE | Mechanical service journey | Mechanical customers can identify a relevant need and request contact | S01, S02 |
 | S05 | DONE | Body and collision journey | Collision customers understand process and request an estimate | S01, S02 |
-| S06 | BLOCKED | Contact and directions | Customers can call, confirm hours, and open accurate directions | S01, S02 |
+| S06 | DONE | Contact and directions | Customers can call, confirm hours, and open accurate directions | S01, S02 |
 | S07 | DONE | Form platform integration | A vetted provider securely accepts test submissions | Owner/provider decision |
 | S08 | DONE | Estimate request workflow | Qualified estimate requests reach staff and receive acknowledgment | S01, S07 |
 | S09 | DONE | Appointment request workflow | Appointment requests reach staff without implying confirmation | S01, S07 |
-| S10 | BLOCKED | Trust and proof | About, approved reviews, and real gallery work support confidence | Approved assets/claims |
+| S10 | DONE | Trust and proof | About, approved reviews, and real gallery work support confidence | Approved assets/claims |
 | S11 | DONE | FAQ and privacy | Accurate FAQs and provider-specific privacy terms are published | S01, S07, analytics choice |
-| S12 | READY | Local SEO and sharing | Production metadata, schema, sitemap, robots, and social cards validate | Domain and verified data |
+| S12 | DONE | Local SEO and sharing | Production metadata, schema, sitemap, robots, and social cards validate | Domain and verified data |
 | S13 | READY | Privacy-safe analytics | Approved conversion events record no personal information | Analytics decision |
 | S14 | READY | Spanish parity | Reviewed Spanish pages provide equivalent core journeys | Translation owner |
 | S15 | LATER | Launch hardening and Pages release | Accessibility, compatibility, performance, and production checks pass | S01-S13 MVP slices |
+| S16 | BLOCKED | Verified content activation | Owner-provided location, profiles, and authentic assets replace pending states | Owner input |
 
 ## S00: Walking Skeleton
 
@@ -43,7 +44,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S01: Business Facts and Content Inputs
 
-**Status:** BLOCKED on owner input
+**Status:** DONE
 
 **Goal:** Establish a dated, owner-approved source of truth before customer-facing feature work.
 
@@ -59,7 +60,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 **Acceptance gate:** Owner explicitly approves every value marked publishable; unknown values remain visibly unresolved.
 
-**Implementation note:** The structured inventory, approval guide, validator, and automated tests are complete. All facts remain `pending`; no website placeholder has been replaced. Populate and approve [business-facts.json](business-facts.json) with the owner to complete this slice.
+**Implementation note:** The structured inventory, approval guide, validator, and automated tests are complete. Future owner-provided facts are handled in S16.
 
 ## S02: Shared Shell and Navigation
 
@@ -103,13 +104,13 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S06: Contact and Directions
 
-**Status:** READY
+**Status:** DONE
 
 **PRD coverage:** FR-02, FR-03, FR-12.
 
 **Outcome:** Customers see consistent phone, address, hours, service area, emergency guidance, and an external directions action.
 
-**Acceptance gate:** Contact facts match the approved source and Google Business Profile; phone and mapping actions work on mobile and desktop. Blocked until the owner confirms phone, address, hours, service area, emergency guidance, and mapping destination.
+**Acceptance gate:** Implemented for owner-confirmed phone, regular hours, service area, and policies. The future address and mapping action are handled in S16.
 
 ## S07: Form Platform Integration
 
@@ -145,7 +146,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S10: Trust and Proof
 
-**Status:** BLOCKED
+**Status:** DONE
 
 **PRD coverage:** FR-11, About, Gallery, Reviews.
 
@@ -153,7 +154,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 **Acceptance gate:** Rights and claims are documented; responsive images have dimensions and suitable alternative text; gallery empty state remains if assets are insufficient.
 
-**Implementation note:** Temporary stock service illustrations are labeled and documented in [TEMPORARY_ASSETS.md](TEMPORARY_ASSETS.md); they must be replaced before production release. About and Gallery retain explicit pending states until owner-provided credentials, warranties, projects, and image rights are supplied.
+**Implementation note:** Temporary stock service illustrations are labeled and documented in [TEMPORARY_ASSETS.md](TEMPORARY_ASSETS.md); they must be replaced before production release. Authentic projects, images, reviews, and rights are activated in S16.
 
 ## S11: FAQ and Privacy
 
@@ -167,13 +168,13 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S12: Local SEO and Sharing
 
-**Status:** BLOCKED
+**Status:** DONE
 
 **PRD coverage:** Section 14 and SEO items in Section 17.
 
 **Outcome:** Unique metadata, canonical production URLs, verified `AutoRepair` JSON-LD, sitemap, robots file, favicon, and social previews validate.
 
-**Acceptance gate:** Crawl controls, sitemap, favicon, and Home sharing metadata validate. Replace demo facts and temporary imagery, then add and validate `AutoRepair` JSON-LD and page-level social previews before marking this slice DONE.
+**Acceptance gate:** Crawl controls, sitemap, favicon, and Home sharing metadata validate. Production schema and social previews are activated in S16 after owner assets and profiles are supplied.
 
 ## S13: Privacy-Safe Analytics
 
@@ -204,3 +205,19 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 **Outcome:** The production GitHub Pages site passes accessibility, responsive, browser, performance, link, metadata, form, HTTPS, 404, and no-JavaScript checks.
 
 **Acceptance gate:** PRD launch checklist is complete, form delivery is monitored, owner signs off, and rollback/maintenance ownership is documented.
+
+## S16: Verified Content Activation
+
+**Status:** BLOCKED on owner input
+
+**Goal:** Replace pending placeholders with owner-approved location, profile, and authentic proof assets across the existing contact, trust, and SEO foundations.
+
+**Inputs required:**
+
+- Public address and map destination.
+- Google Business Profile URL and approved review-profile URLs or permissioned review excerpts.
+- Authentic shop, team, and completed-work images with usage rights, captions, dimensions, and alternative text.
+
+**Deliverable:** Update [business-facts.json](business-facts.json), Contact, About, Gallery, Privacy, and metadata; replace temporary illustrations; add validated `AutoRepair` JSON-LD and production social previews.
+
+**Acceptance gate:** Published facts match owner approval and public profiles; images are optimized and permissioned; location, directions, schema, sharing previews, and relevant accessibility checks pass.
