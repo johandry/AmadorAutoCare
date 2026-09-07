@@ -27,9 +27,13 @@ function trackAnalyticsEvent(name, details = {}) {
   document.dispatchEvent(new CustomEvent('amadoranalytics', {
     detail: { name, context }
   }));
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', name, context);
+  }
 }
 
-function loadCloudflareAnalytics() {
+function loadGoogleAnalytics() {
   const configScript = [...document.querySelectorAll('script')]
     .find((script) => script.src.endsWith('/assets/js/main.js') || script.src.includes('/assets/js/main.js?'));
 
@@ -41,21 +45,52 @@ function loadCloudflareAnalytics() {
   script.src = new URL('analytics-config.js', configScript.src).href;
   script.dataset.amadorAnalyticsConfig = '';
   script.onload = () => {
-    const token = window.AMADOR_ANALYTICS_CONFIG?.cloudflareBeaconToken;
-    if (!token || document.querySelector('[data-cf-beacon]')) {
+    const measurementId = window.AMADOR_ANALYTICS_CONFIG?.googleMeasurementId;
+    if (!measurementId || document.querySelector('[data-google-analytics]')) {
       return;
     }
 
-    const beacon = document.createElement('script');
-    beacon.type = 'module';
-    beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
-    beacon.dataset.cfBeacon = JSON.stringify({ token });
-    document.head.append(beacon);
+    if (localStorage.getItem('amador-analytics-consent') !== 'granted') {
+      showAnalyticsConsent();
+      return;
+    }
+
+    const analytics = document.createElement('script');
+    analytics.async = true;
+    analytics.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+    analytics.dataset.googleAnalytics = '';
+    document.head.append(analytics);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = (...args) => window.dataLayer.push(args);
+    window.gtag('consent', 'default', { analytics_storage: 'granted' });
+    window.gtag('js', new Date());
+    window.gtag('config', measurementId);
   };
   document.head.append(script);
 }
 
-loadCloudflareAnalytics();
+function showAnalyticsConsent() {
+  if (document.querySelector('[data-analytics-consent]')) {
+    return;
+  }
+
+  const notice = document.createElement('aside');
+  notice.className = 'analytics-consent';
+  notice.dataset.analyticsConsent = '';
+  notice.innerHTML = '<p>We use Google Analytics for aggregate site measurement. It does not receive service-request details or form values.</p><button type="button" data-analytics-accept>Allow analytics</button><button type="button" data-analytics-decline>Decline</button>';
+  notice.querySelector('[data-analytics-accept]').addEventListener('click', () => {
+    localStorage.setItem('amador-analytics-consent', 'granted');
+    notice.remove();
+    loadGoogleAnalytics();
+  });
+  notice.querySelector('[data-analytics-decline]').addEventListener('click', () => {
+    localStorage.setItem('amador-analytics-consent', 'denied');
+    notice.remove();
+  });
+  document.body.append(notice);
+}
+
+loadGoogleAnalytics();
 
 function trackAnalyticsLinkClick(event) {
   const link = event.target.closest?.('a[href]');

@@ -81,7 +81,7 @@ For visual work, serve the repository locally and test at 320px, 375px, 768px, 1
 - S12 crawl controls, sitemap, favicon, and Home sharing metadata are implemented. S16 will add `AutoRepair` JSON-LD and final sharing previews when profiles and approved imagery are supplied.
 - S14 includes a complete Spanish development-demo route set for core pages and request journeys. The developer approved the generated demo translation; qualified human review and a named maintenance owner remain required before production release.
 - Temporary generic service illustrations appear on Home and service pages only; they are not proof of Amador Auto Care work and must be replaced before production release.
-- Cloudflare Web Analytics is selected. Its public beacon token and consent behavior must be configured and verified before production tracking is enabled. Spanish translation review also remains unresolved for production.
+- Google Analytics is selected. Its public Measurement ID and consent behavior must be configured and verified before production tracking is enabled. Spanish translation review also remains unresolved for production.
 - GitHub Actions validates and deploys the static site to GitHub Pages on every push to `main`; GitHub Pages must be configured to use GitHub Actions as its source.
 - Next action: begin the next ready slice only when explicitly requested, keeping the Supabase request contract and published privacy disclosure synchronized.
 

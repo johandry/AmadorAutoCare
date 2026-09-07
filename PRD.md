@@ -318,7 +318,7 @@ Customer browser
 - Keep source assets organized by type and document local preview/deployment in the README.
 - Recommended forms: evaluate Formspree/Basin against requirements before selection.
 - Recommended maps: normal Google Maps or Apple Maps directions links; avoid a heavy embed by default.
-- Recommended analytics: Cloudflare Web Analytics or Plausible if budget permits; use Google Analytics only if its capabilities and consent implications are needed.
+- Selected analytics: Google Analytics 4 with explicit visitor consent and an allowlisted, no-PII event contract.
 
 ## 18. Analytics and Conversion Tracking
 

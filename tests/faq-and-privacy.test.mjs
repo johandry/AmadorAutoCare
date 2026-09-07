@@ -37,10 +37,10 @@ test('provides a privacy contact and describes disabled features', () => {
   assert.match(privacyPage, /correct, or request deletion of a service request/i);
   assert.match(privacyPage, /mailto:service@info\.amadorautocare\.com/);
   assert.match(privacyPage, /Photo uploads are not enabled/i);
-  assert.match(privacyPage, /Cloudflare Web Analytics is selected for aggregate page analytics/i);
-  assert.match(privacyPage, /remains disabled until its public beacon token is configured/i);
+  assert.match(privacyPage, /Google Analytics is selected for aggregate site measurement/i);
+  assert.match(privacyPage, /remains disabled until a Measurement ID is configured and you allow analytics/i);
   assert.match(privacyPage, /do not sell service-request information/i);
-  assert.doesNotMatch(privacyPage, /Google Analytics|Meta Pixel|file upload/i);
+  assert.doesNotMatch(privacyPage, /Meta Pixel|file upload/i);
 });
 
 test('marks sample business content as development-only before production release', () => {

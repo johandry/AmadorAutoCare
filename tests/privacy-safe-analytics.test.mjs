@@ -7,11 +7,11 @@ const config = fs.readFileSync(new URL('../assets/js/analytics-config.js', impor
 const documentation = fs.readFileSync(new URL('../docs/ANALYTICS.md', import.meta.url), 'utf8');
 const privacyPage = fs.readFileSync(new URL('../privacy.html', import.meta.url), 'utf8');
 
-test('configures Cloudflare analytics with the public beacon token', () => {
-  assert.match(config, /cloudflareBeaconToken: '828f5a8b1b7f44b3840c008d6e550797'/);
-  assert.match(mainScript, /static\.cloudflareinsights\.com\/beacon\.min\.js/);
-  assert.match(mainScript, /beacon\.type = 'module'/);
-  assert.match(mainScript, /if \(!token/);
+test('keeps Google Analytics disabled until a Measurement ID and visitor consent are present', () => {
+  assert.match(config, /googleMeasurementId: ''/);
+  assert.match(mainScript, /www\.googletagmanager\.com\/gtag\/js\?id=/);
+  assert.match(mainScript, /amador-analytics-consent/);
+  assert.match(mainScript, /localStorage\.getItem\('amador-analytics-consent'\) !== 'granted'/);
 });
 
 test('emits only the approved aggregate conversion event names', () => {
@@ -27,13 +27,13 @@ test('limits conversion event context to page, form, and source without form val
   assert.match(mainScript, /context\.source = details\.source/);
   assert.match(mainScript, /detail: \{ name, context \}/);
   assert.doesNotMatch(mainScript, /detail: \{[^}]+(email|phone|vehicle|description|FormData)/i);
+  assert.match(mainScript, /window\.gtag\('event', name, context\)/);
 });
 
-test('documents Cloudflare page analytics and the custom-event privacy boundary', () => {
-  assert.match(documentation, /Cloudflare Web Analytics is the selected provider/i);
-  assert.match(documentation, /Cloudflare beacon records page analytics only/i);
+test('documents Google Analytics consent and the custom-event privacy boundary', () => {
+  assert.match(documentation, /Google Analytics 4 is the selected provider/i);
+  assert.match(documentation, /explicitly allows analytics/i);
+  assert.match(documentation, /Events are sent to Google Analytics only after explicit consent/i);
   assert.match(documentation, /never includes names, emails, phone numbers, vehicle data, free text/i);
-  assert.match(privacyPage, /Cloudflare Web Analytics is selected for aggregate page analytics/i);
-  assert.match(privacyPage, /remains disabled until its public beacon token is configured/i);
-  assert.match(privacyPage, /do not send service-request details or form values to analytics/i);
+  assert.doesNotMatch(documentation, /Cloudflare/i);
 });

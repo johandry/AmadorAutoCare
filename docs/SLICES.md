@@ -184,7 +184,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 **Outcome:** Approved aggregate events capture call, directions, request entry, form state, and optional gallery/language engagement without personal data.
 
-**Acceptance gate:** Cloudflare Web Analytics is selected. The beacon is disabled until configured, and the local conversion-event contract contains no personal or vehicle data. Configure the beacon token and verify page analytics plus consent behavior before marking this slice DONE.
+**Acceptance gate:** Google Analytics is selected. It is disabled until a Measurement ID is configured and a visitor grants consent. The conversion-event contract contains no personal or vehicle data. Verify page analytics and consent behavior before marking this slice DONE.
 
 ## S14: Spanish Parity
 
