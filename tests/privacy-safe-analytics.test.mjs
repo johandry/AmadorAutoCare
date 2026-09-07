@@ -7,11 +7,12 @@ const config = fs.readFileSync(new URL('../assets/js/analytics-config.js', impor
 const documentation = fs.readFileSync(new URL('../docs/ANALYTICS.md', import.meta.url), 'utf8');
 const privacyPage = fs.readFileSync(new URL('../privacy.html', import.meta.url), 'utf8');
 
-test('loads Google Analytics only after visitor consent when a valid Measurement ID is configured', () => {
+test('loads Google Analytics with denied storage until visitor consent is granted', () => {
   assert.match(config, /googleMeasurementId: 'G-[A-Z0-9]+'/);
   assert.match(mainScript, /www\.googletagmanager\.com\/gtag\/js\?id=/);
   assert.match(mainScript, /amador-analytics-consent/);
-  assert.match(mainScript, /localStorage\.getItem\('amador-analytics-consent'\) !== 'granted'/);
+  assert.match(mainScript, /analytics_storage: hasConsent \? 'granted' : 'denied'/);
+  assert.match(mainScript, /window\.gtag\?\.\('consent', 'update', \{ analytics_storage: 'granted' \}\)/);
 });
 
 test('emits only the approved aggregate conversion event names', () => {
