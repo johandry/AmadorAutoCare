@@ -32,10 +32,10 @@
   },
   "trust": {
     "experience": { "status": "approved", "value": "The shop has years of hands-on experience serving local drivers.", "approval": { "approvedBy": "Business owner", "approvedOn": "2026-09-07", "source": "Owner-approved trust information" } },
-    "credentials": { "status": "pending", "value": null, "approval": null },
+    "credentials": { "status": "not-offered", "value": null, "approval": { "approvedBy": "Business owner", "approvedOn": "2026-09-07", "source": "Owner-confirmed no credentials currently offered" } },
     "warranties": { "status": "approved", "value": ["Parts warranty", "Labor warranty"], "approval": { "approvedBy": "Business owner", "approvedOn": "2026-09-07", "source": "Owner-approved trust information" } },
     "paymentOptions": { "status": "approved", "value": ["Cash", "Credit card"], "approval": { "approvedBy": "Business owner", "approvedOn": "2026-09-07", "source": "Owner-approved payment options" } },
-    "insuranceRelationships": { "status": "pending", "value": null, "approval": null },
+    "insuranceRelationships": { "status": "not-offered", "value": null, "approval": { "approvedBy": "Business owner", "approvedOn": "2026-09-07", "source": "Owner-confirmed no insurance relationships currently offered" } },
     "languagesSpoken": { "status": "approved", "value": ["English", "Spanish"], "approval": { "approvedBy": "Business owner", "approvedOn": "2026-09-07", "source": "Owner-approved trust information" } }
   },
   "onlinePresence": {

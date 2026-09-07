@@ -7,7 +7,7 @@ The values in [business-facts.json](business-facts.json) are development-demo sa
 - Address.
 - Mechanical, body/collision, and excluded services.
 - Emergency, unsafe-to-drive, after-hours, towing, estimate, appointment, and response-time policies.
-- Credentials and insurance relationships.
+- Google Business Profile and review profiles.
 - Google Business Profile and review profiles.
 - Shop/team images, gallery projects, captions, and review permissions.
 

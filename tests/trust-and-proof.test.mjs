@@ -7,8 +7,8 @@ const galleryPage = fs.readFileSync(new URL('../gallery.html', import.meta.url),
 const businessFacts = JSON.parse(fs.readFileSync(new URL('../docs/business-facts.json', import.meta.url), 'utf8'));
 
 test('publishes owner-approved experience, warranties, and language support only', () => {
-  assert.equal(businessFacts.trust.credentials.status, 'pending');
-  assert.equal(businessFacts.trust.insuranceRelationships.status, 'pending');
+  assert.equal(businessFacts.trust.credentials.status, 'not-offered');
+  assert.equal(businessFacts.trust.insuranceRelationships.status, 'not-offered');
   assert.match(aboutPage, /hands-on experience serving local drivers/i);
   assert.match(aboutPage, /Parts warranty/);
   assert.match(aboutPage, /Labor warranty/);

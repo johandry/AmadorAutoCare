@@ -33,6 +33,7 @@ jobs:
         run: |
           node scripts/check-site.mjs
           node --test tests/appointment-request-workflow.test.mjs
+          node --test tests/body-collision-journey.test.mjs
           node --test tests/contact-directions.test.mjs
           node --test tests/estimate-request-workflow.test.mjs
           node --test tests/faq-and-privacy.test.mjs

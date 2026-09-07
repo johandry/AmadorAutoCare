@@ -13,7 +13,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | S02 | DONE | Shared shell and navigation | Production-ready responsive header, footer, service navigation, and mobile actions | S01 |
 | S03 | DONE | Home conversion journey | Home explains the offer and routes users to the right action | S01, S02 |
 | S04 | DONE | Mechanical service journey | Mechanical customers can identify a relevant need and request contact | S01, S02 |
-| S05 | READY | Body and collision journey | Collision customers understand process and request an estimate | S01, S02 |
+| S05 | DONE | Body and collision journey | Collision customers understand process and request an estimate | S01, S02 |
 | S06 | BLOCKED | Contact and directions | Customers can call, confirm hours, and open accurate directions | S01, S02 |
 | S07 | DONE | Form platform integration | A vetted provider securely accepts test submissions | Owner/provider decision |
 | S08 | DONE | Estimate request workflow | Qualified estimate requests reach staff and receive acknowledgment | S01, S07 |
@@ -93,13 +93,13 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S05: Body and Collision Journey
 
-**Status:** READY
+**Status:** DONE
 
 **PRD coverage:** FR-04, FR-17, body/collision page requirements.
 
 **Outcome:** Customers understand supported work, inspection expectations, insurance guidance, and why photos do not guarantee a final estimate.
 
-**Acceptance gate:** Estimate language never promises a binding price; owner approves services and process.
+**Acceptance gate:** Met. Owner-approved services are published, the estimate process explains inspection and photo limits, call and estimate actions work without JavaScript, and the page states that insurance relationships are not currently offered.
 
 ## S06: Contact and Directions
 
