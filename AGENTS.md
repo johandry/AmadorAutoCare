@@ -17,7 +17,7 @@ Business facts are not yet verified. Never invent a phone number, address, hours
 - GitHub Pages provides no backend. Production forms require an approved third-party processor.
 - Supabase Edge Functions process requests after `assets/js/supabase-config.js` is configured with the deployed endpoint. Until then, forms transmit nothing and state the call fallback clearly.
 - Do not place secrets, private keys, personal form values, or sensitive customer data in Git, URLs, analytics, or client code.
-- Use authentic owner-approved visual assets. A clear placeholder is preferable to fabricated or generic proof-of-work imagery.
+- Use owner-approved visual assets for production proof-of-work. Temporary stock service illustrations are documented in [docs/TEMPORARY_ASSETS.md](docs/TEMPORARY_ASSETS.md), explicitly labeled, and must be replaced before production release.
 
 ## Repository Map
 
@@ -76,6 +76,7 @@ For visual work, serve the repository locally and test at 320px, 375px, 768px, 1
 - S08 estimate qualification fields, accessible error states, and server-side duplicate protection are implemented and live-validated.
 - S09 appointment time-window fields, accessible validation, and server-side scheduling checks are implemented and live-validated.
 - S10 publishes only approved credential and warranty categories; Gallery remains an accessible empty state pending authentic, permissioned projects, image rights, and review approvals.
+- Temporary generic service illustrations appear on Home and service pages only; they are not proof of Amador Auto Care work and must be replaced before production release.
 - Analytics provider, production URL, and Spanish scope also remain unresolved.
 - GitHub Actions validates and deploys the static site to GitHub Pages on every push to `main`; GitHub Pages must be configured to use GitHub Actions as its source.
 - Next action: begin the next ready slice only when explicitly requested, keeping the Supabase request contract and published privacy disclosure synchronized.
