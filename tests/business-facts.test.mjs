@@ -36,7 +36,7 @@ function approveAllFacts(data) {
   return data;
 }
 
-test('accepts the initial inventory when every unknown fact is explicitly pending', () => {
+test('accepts the development inventory when every approved fact has provenance', () => {
   assert.deepEqual(validateBusinessFacts(cloneInventory()), []);
 });
 
@@ -68,7 +68,11 @@ test('rejects an approved fact without an approver, date, and source', () => {
 
 test('rejects publishable content placed in a pending fact', () => {
   const data = cloneInventory();
-  data.business.address.value = 'Unapproved test address';
+  data.business.address = {
+    status: 'pending',
+    value: 'Unapproved test address',
+    approval: null
+  };
 
   assert.match(validateBusinessFacts(data).join('\n'), /business\.address cannot contain publishable content/);
 });
@@ -104,6 +108,11 @@ test('rejects an inventory that omits a required S01 fact', () => {
 
 test('rejects whole-inventory approval while any facts remain pending', () => {
   const data = cloneInventory();
+  data.business.address = {
+    status: 'pending',
+    value: null,
+    approval: null
+  };
   data.review = { status: 'approved', ...approval };
 
   assert.match(validateBusinessFacts(data).join('\n'), /review cannot be approved while facts remain pending/);
@@ -111,7 +120,12 @@ test('rejects whole-inventory approval while any facts remain pending', () => {
 
 test('rejects approval metadata attached to a pending review', () => {
   const data = cloneInventory();
-  data.review.approvedBy = 'Test Owner';
+  data.review = {
+    status: 'pending',
+    approvedBy: 'Test Owner',
+    approvedOn: null,
+    source: null
+  };
 
   assert.match(validateBusinessFacts(data).join('\n'), /pending review cannot contain approval metadata/);
 });

@@ -16,7 +16,7 @@ test('collects the useful estimate details needed for a qualified request', () =
 });
 
 test('keeps safety and estimate boundaries clear without offering photo upload', () => {
-  assert.match(estimatePage, /If the vehicle is unsafe to drive, email the shop for next steps before operating it\./);
+  assert.match(estimatePage, /If the vehicle is unsafe to drive, call for next steps before operating it\./);
   assert.match(estimatePage, /Photo uploads are not available\./);
   assert.match(estimatePage, /does not provide a diagnosis or create a binding estimate/i);
   assert.doesNotMatch(estimatePage, /type="file"/i);
@@ -31,8 +31,8 @@ test('describes invalid, duplicate, and delivery-failure states in accessible te
   assert.match(mainScript, /invalidField\?\.focus\(\);/);
   assert.match(mainScript, /Please complete \$\{label\?\.trim\(\) \|\| 'the required fields'\} before sending your request\./);
   assert.match(mainScript, /error\?\.message === 'duplicate'/);
-  assert.match(mainScript, /This request was already received\. Please email the shop if you need to add information\./);
-  assert.match(mainScript, /We could not send your request\. Please try again or email the shop for next steps\./);
+  assert.match(mainScript, /This request was already received\. Please call the shop if you need to add information\./);
+  assert.match(mainScript, /We could not send your request\. Please try again or call the shop for next steps\./);
   assert.match(estimatePage, /data-form-status role="status" aria-live="polite"/);
 });
 

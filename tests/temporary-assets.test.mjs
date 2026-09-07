@@ -29,10 +29,9 @@ test('does not use temporary stock imagery as gallery proof or reviews', () => {
 });
 
 test('documents a mandatory replacement and rights review before production release', () => {
-  assert.match(assetPolicy, /Only these values are approved for public use:/);
-  assert.match(assetPolicy, /Display name: Amador Auto Care/);
-  assert.match(assetPolicy, /Monitored email: service@info\.amadorautocare\.com/);
-  assert.match(assetPolicy, /Before production release, obtain owner confirmation for:/);
+  assert.match(assetPolicy, /The values in .*business-facts\.json.* are development-demo samples\./);
+  assert.match(assetPolicy, /Before production release, replace them with owner-confirmed values for:/);
+  assert.match(assetPolicy, /Do not release the demo values as production business claims\./);
   assert.match(assetPolicy, /Before a production release, replace every temporary illustration with owner-approved Amador Auto Care imagery\./);
   assert.match(assetPolicy, /owner or license source, usage permission, descriptive caption, dimensions, alternative text/i);
   assert.match(assetPolicy, /customer names, faces, VINs, or license plates/i);

@@ -1,15 +1,8 @@
 # Temporary Content and Illustrations
 
-## Verified Business Facts
+## Demo Business Facts
 
-Only these values are approved for public use:
-
-- Display name: Amador Auto Care
-- Monitored email: service@info.amadorautocare.com
-
-## Temporary Business Facts
-
-Before production release, obtain owner confirmation for:
+The values in [business-facts.json](business-facts.json) are development-demo samples. Before production release, replace them with owner-confirmed values for:
 
 - Legal name, phone, address, service area, regular hours, and holiday-hours process.
 - Mechanical, body/collision, and excluded services.
@@ -18,7 +11,7 @@ Before production release, obtain owner confirmation for:
 - Controlled domain, Google Business Profile, review profiles, and content maintenance owner.
 - Logo, shop/team images, gallery projects, captions, and review permissions.
 
-Do not publish any temporary business fact as a customer-facing claim. Record approved values with a source, approver, and approval date in [business-facts.json](business-facts.json).
+Record each replacement with a source, approver, and approval date in [business-facts.json](business-facts.json). Do not release the demo values as production business claims.
 
 ## Temporary Illustrations
 
