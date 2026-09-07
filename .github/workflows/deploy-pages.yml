@@ -37,6 +37,7 @@ jobs:
           node --test tests/estimate-request-workflow.test.mjs
           node --test tests/faq-and-privacy.test.mjs
           node --test tests/home-conversion.test.mjs
+          node --test tests/local-seo.test.mjs
           node --test tests/mechanical-journey.test.mjs
           node --test tests/navigation-shell.test.mjs
           node --test tests/supabase-integration.test.mjs

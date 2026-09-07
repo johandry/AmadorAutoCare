@@ -1,0 +1,14 @@
+{
+  "name": "Amador Auto Care",
+  "short_name": "Amador Auto Care",
+  "icons": [
+    {
+      "src": "assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#284943",
+  "background_color": "#f7f4ed",
+  "display": "browser"
+}

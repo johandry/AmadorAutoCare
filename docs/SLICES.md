@@ -20,7 +20,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | S09 | DONE | Appointment request workflow | Appointment requests reach staff without implying confirmation | S01, S07 |
 | S10 | BLOCKED | Trust and proof | About, approved reviews, and real gallery work support confidence | Approved assets/claims |
 | S11 | DONE | FAQ and privacy | Accurate FAQs and provider-specific privacy terms are published | S01, S07, analytics choice |
-| S12 | BLOCKED | Local SEO and sharing | Production metadata, schema, sitemap, robots, and social cards validate | Domain and verified data |
+| S12 | READY | Local SEO and sharing | Production metadata, schema, sitemap, robots, and social cards validate | Domain and verified data |
 | S13 | BLOCKED | Privacy-safe analytics | Approved conversion events record no personal information | Analytics decision |
 | S14 | LATER | Spanish parity | Reviewed Spanish pages provide equivalent core journeys | Translation owner |
 | S15 | LATER | Launch hardening and Pages release | Accessibility, compatibility, performance, and production checks pass | S01-S13 MVP slices |
@@ -103,7 +103,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S06: Contact and Directions
 
-**Status:** BLOCKED
+**Status:** READY
 
 **PRD coverage:** FR-02, FR-03, FR-12.
 
@@ -173,7 +173,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 **Outcome:** Unique metadata, canonical production URLs, verified `AutoRepair` JSON-LD, sitemap, robots file, favicon, and social previews validate.
 
-**Acceptance gate:** No schema field is unverified; structured data and links validate; sitemap uses final HTTPS URLs.
+**Acceptance gate:** Crawl controls, sitemap, favicon, and Home sharing metadata validate. Replace demo facts and temporary imagery, then add and validate `AutoRepair` JSON-LD and page-level social previews before marking this slice DONE.
 
 ## S13: Privacy-Safe Analytics
 
