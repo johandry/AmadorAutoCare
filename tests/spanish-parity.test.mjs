@@ -31,6 +31,8 @@ test('includes Spanish equivalents for every core customer route', () => {
 test('keeps estimate and appointment request contracts equivalent in Spanish', () => {
   const estimate = spanishPage('estimate.html');
   const appointment = spanishPage('appointment.html');
+  assert.match(estimate, /src="\.\.\/assets\/js\/main\.js\?v=es-localized" defer/);
+  assert.match(appointment, /src="\.\.\/assets\/js\/main\.js\?v=es-localized" defer/);
   for (const field of ['name', 'email', 'vehicle', 'category', 'preferredContact', 'safeToDrive', 'description']) {
     assert.match(estimate, new RegExp(`name="${field}"`));
   }
