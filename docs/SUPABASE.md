@@ -31,6 +31,8 @@ Before launch, submit one estimate and one appointment request from the deployed
 
 **Validated September 7, 2026:** The deployed endpoint accepted synthetic estimate and appointment requests, rejected invalid, honeypot, and blocked-origin requests, enforced the five-request rate limit, and both deployed forms showed the recoverable call fallback while offline.
 
+**S09 validated September 7, 2026:** The deployed appointment workflow accepted a valid request, rejected a duplicate, announced and focused the first missing field, prevented selecting a past date, and restored its submit control after an offline failure.
+
 ## Operating Policy
 
 - New requests are reviewed at least every four hours.

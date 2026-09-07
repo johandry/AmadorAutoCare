@@ -17,7 +17,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | S06 | DONE | Contact and directions | Customers can call, confirm hours, and open accurate directions | S01, S02 |
 | S07 | DONE | Form platform integration | A vetted provider securely accepts test submissions | Owner/provider decision |
 | S08 | DONE | Estimate request workflow | Qualified estimate requests reach staff and receive acknowledgment | S01, S07 |
-| S09 | READY | Appointment request workflow | Appointment requests reach staff without implying confirmation | S01, S07 |
+| S09 | DONE | Appointment request workflow | Appointment requests reach staff without implying confirmation | S01, S07 |
 | S10 | BLOCKED | Trust and proof | About, approved reviews, and real gallery work support confidence | Approved assets/claims |
 | S11 | READY | FAQ and privacy | Accurate FAQs and provider-specific privacy terms are published | S01, S07, analytics choice |
 | S12 | BLOCKED | Local SEO and sharing | Production metadata, schema, sitemap, robots, and social cards validate | Domain and verified data |
@@ -135,13 +135,13 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S09: Appointment Request Workflow
 
-**Status:** READY
+**Status:** DONE
 
 **PRD coverage:** FR-06 through FR-09.
 
 **Outcome:** A customer requests a service window and receives repeated notice that no appointment exists until staff confirms it.
 
-**Acceptance gate:** Local validation passes. Redeploy the Edge Function and live-test valid, invalid past-date, duplicate, and offline paths before marking this slice DONE. No UI state calls the request “booked” or “confirmed.”
+**Acceptance gate:** Met. The deployed workflow accepts a valid appointment request, announces missing fields and focuses the first invalid field, blocks past dates, rejects duplicates, and shows a recoverable offline failure state. No UI state calls the request “booked” or “confirmed.”
 
 ## S10: Trust and Proof
 
