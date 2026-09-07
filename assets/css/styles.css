@@ -410,6 +410,11 @@ h3 {
   display: none;
 }
 
+.honeypot {
+  position: absolute;
+  left: -10000px;
+}
+
 details {
   padding-block: 1rem;
   border-bottom: 1px solid var(--color-line);

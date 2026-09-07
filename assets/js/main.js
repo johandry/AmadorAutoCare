@@ -41,8 +41,10 @@ if (navigationToggle && primaryNavigation) {
   });
 }
 
-document.querySelectorAll('[data-demo-form]').forEach((form) => {
-  form.addEventListener('submit', (event) => {
+const serviceRequestEndpoint = window.AMADOR_AUTO_CARE_CONFIG?.serviceRequestEndpoint;
+
+document.querySelectorAll('[data-service-request-form]').forEach((form) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     if (!(form instanceof HTMLFormElement) || !form.reportValidity()) {
@@ -50,9 +52,47 @@ document.querySelectorAll('[data-demo-form]').forEach((form) => {
     }
 
     const status = form.querySelector('[data-form-status]');
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (!serviceRequestEndpoint) {
+      if (status) {
+        status.textContent = 'Online requests are not configured yet. Please call the shop for next steps.';
+      }
+      return;
+    }
+
+    submitButton?.setAttribute('disabled', '');
     if (status) {
-      status.textContent = 'Walking skeleton complete: the form is valid, but no information was sent. A form provider must be selected before launch.';
-      status.scrollIntoView({ block: 'nearest' });
+      status.textContent = 'Sending your request...';
+    }
+
+    try {
+      const response = await fetch(serviceRequestEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          requestType: form.dataset.requestType,
+          fields: Object.fromEntries(new FormData(form).entries())
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+
+      if (status) {
+        status.textContent = form.dataset.requestType === 'appointment'
+          ? 'Your appointment request was sent. It is not booked until staff confirms it.'
+          : 'Your estimate request was sent. Staff will review it and follow up.';
+        status.scrollIntoView({ block: 'nearest' });
+      }
+      form.reset();
+    } catch {
+      if (status) {
+        status.textContent = 'We could not send your request. Please try again or call the shop for next steps.';
+        status.scrollIntoView({ block: 'nearest' });
+      }
+    } finally {
+      submitButton?.removeAttribute('disabled');
     }
   });
 });

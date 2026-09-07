@@ -4,11 +4,12 @@ Static, mobile-first website for an auto care business offering mechanical and b
 
 ## Current Stage
 
-The walking skeleton is implemented. All planned MVP routes exist and the two request forms validate locally, but they intentionally transmit no information until a form provider and privacy terms are approved.
+The walking skeleton is implemented. Estimate and appointment forms submit through a configured Supabase Edge Function; until its endpoint is configured, they show a clear call fallback and transmit nothing.
 
 - Product requirements: [PRD.md](PRD.md)
 - Delivery slices: [docs/SLICES.md](docs/SLICES.md)
 - Architecture and session context: [AGENTS.md](AGENTS.md)
+- Supabase setup: [docs/SUPABASE.md](docs/SUPABASE.md)
 
 ## Local Preview
 

@@ -15,7 +15,7 @@ Business facts are not yet verified. Never invent a phone number, address, hours
 - Host on GitHub Pages. Keep links relative so the repository subpath works before a custom domain exists.
 - Preserve useful content and navigation when JavaScript is unavailable.
 - GitHub Pages provides no backend. Production forms require an approved third-party processor.
-- Until that processor is selected, forms use `data-demo-form`: they validate in the browser, transmit nothing, and state this clearly.
+- Supabase Edge Functions process requests after `assets/js/supabase-config.js` is configured with the deployed endpoint. Until then, forms transmit nothing and state the call fallback clearly.
 - Do not place secrets, private keys, personal form values, or sensitive customer data in Git, URLs, analytics, or client code.
 - Use authentic owner-approved visual assets. A clear placeholder is preferable to fabricated or generic proof-of-work imagery.
 
@@ -72,7 +72,9 @@ For visual work, serve the repository locally and test at 320px, 375px, 768px, 1
 - The S03 home conversion journey is implemented and validated with clear routes to estimate and appointment requests.
 - S06 contact and directions is implemented with approved phone, address, hours, service area, customer guidance, and a no-key external map link.
 - Business facts are approved in [docs/business-facts.json](docs/business-facts.json); remaining page content still needs review by its owning slice.
-- Form provider, analytics provider, production URL, and Spanish scope also remain unresolved.
+- Supabase is selected for form processing. Completed requests are retained for 90 days and purged by a scheduled database function; the production endpoint, notification workflow, and public-submission decision remain unresolved.
+- Analytics provider, production URL, and Spanish scope also remain unresolved.
+- GitHub Actions validates and deploys the static site to GitHub Pages on every push to `main`; GitHub Pages must be configured to use GitHub Actions as its source.
 - Next action: complete the next ready journey slice while keeping published facts synchronized with [docs/business-facts.json](docs/business-facts.json).
 
 ## Session Handoff Rule

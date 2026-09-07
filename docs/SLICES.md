@@ -117,7 +117,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 **PRD coverage:** FR-05 through FR-10, privacy/security requirements.
 
-**Decision:** Compare current Formspree, Basin, and Getform plans for accessibility, spam controls, retention, uploads, export, notification reliability, data location, and cost. Record the decision in [AGENTS.md](../AGENTS.md).
+**Decision:** Supabase is the selected form processor. Configure its Edge Function, staff workflow, retention, and consent decisions as documented in [SUPABASE.md](SUPABASE.md).
 
 **Outcome:** A minimal non-production test form reaches a monitored staff channel with spam controls and a phone fallback.
 
