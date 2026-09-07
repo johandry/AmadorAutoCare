@@ -22,7 +22,7 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 | S11 | DONE | FAQ and privacy | Accurate FAQs and provider-specific privacy terms are published | S01, S07, analytics choice |
 | S12 | READY | Local SEO and sharing | Production metadata, schema, sitemap, robots, and social cards validate | Domain and verified data |
 | S13 | BLOCKED | Privacy-safe analytics | Approved conversion events record no personal information | Analytics decision |
-| S14 | LATER | Spanish parity | Reviewed Spanish pages provide equivalent core journeys | Translation owner |
+| S14 | READY | Spanish parity | Reviewed Spanish pages provide equivalent core journeys | Translation owner |
 | S15 | LATER | Launch hardening and Pages release | Accessibility, compatibility, performance, and production checks pass | S01-S13 MVP slices |
 
 ## S00: Walking Skeleton
@@ -187,13 +187,13 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 ## S14: Spanish Parity
 
-**Status:** LATER
+**Status:** READY
 
 **PRD coverage:** FR-14.
 
 **Outcome:** A qualified reviewer approves equivalent Spanish core pages and request journeys, with correct language and alternate metadata.
 
-**Acceptance gate:** No partial language path ships; navigation, forms, policies, and maintenance ownership have parity.
+**Acceptance gate:** A complete Spanish development-demo route set is implemented and approved by the developer as reviewer. Deploy and live-test the language switch and request paths before marking this slice DONE. Before production release, obtain qualified human translation review and maintenance ownership.
 
 ## S15: Launch Hardening and Pages Release
 

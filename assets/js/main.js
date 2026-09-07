@@ -43,6 +43,7 @@ if (navigationToggle && primaryNavigation) {
 
 const serviceRequestEndpoint = window.AMADOR_AUTO_CARE_CONFIG?.serviceRequestEndpoint;
 const today = new Date().toISOString().slice(0, 10);
+const isSpanish = document.documentElement.lang === 'es';
 
 document.querySelectorAll('input[type="date"][name="date"]').forEach((input) => {
   input.min = today;
@@ -56,7 +57,9 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
       : invalidField?.closest('fieldset')?.querySelector('legend')?.textContent;
 
     if (status) {
-      status.textContent = `Please complete ${label?.trim() || 'the required fields'} before sending your request.`;
+      status.textContent = isSpanish
+        ? `Complete ${label?.trim() || 'los campos requeridos'} antes de enviar su solicitud.`
+        : `Please complete ${label?.trim() || 'the required fields'} before sending your request.`;
     }
   };
 
@@ -82,14 +85,16 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
     const submitButton = form.querySelector('button[type="submit"]');
     if (!serviceRequestEndpoint) {
       if (status) {
-        status.textContent = 'Online requests are not configured yet. Please call the shop for next steps.';
+        status.textContent = isSpanish
+          ? 'Las solicitudes en linea aun no estan configuradas. Llame al taller para conocer los proximos pasos.'
+          : 'Online requests are not configured yet. Please call the shop for next steps.';
       }
       return;
     }
 
     submitButton?.setAttribute('disabled', '');
     if (status) {
-      status.textContent = 'Sending your request...';
+      status.textContent = isSpanish ? 'Enviando su solicitud...' : 'Sending your request...';
     }
 
     try {
@@ -112,16 +117,16 @@ document.querySelectorAll('[data-service-request-form]').forEach((form) => {
 
       if (status) {
         status.textContent = form.dataset.requestType === 'appointment'
-          ? 'Your appointment request was sent. It is not booked until staff confirms it.'
-          : 'Your estimate request was sent. Staff will review it and follow up.';
+          ? (isSpanish ? 'Su solicitud de cita fue enviada. No esta reservada hasta que el personal la confirme.' : 'Your appointment request was sent. It is not booked until staff confirms it.')
+          : (isSpanish ? 'Su solicitud de presupuesto fue enviada. El personal la revisara y se comunicara con usted.' : 'Your estimate request was sent. Staff will review it and follow up.');
         status.scrollIntoView({ block: 'nearest' });
       }
       form.reset();
     } catch (error) {
       if (status) {
         status.textContent = error?.message === 'duplicate'
-          ? 'This request was already received. Please call the shop if you need to add information.'
-          : 'We could not send your request. Please try again or call the shop for next steps.';
+          ? (isSpanish ? 'Esta solicitud ya fue recibida. Llame al taller si necesita agregar informacion.' : 'This request was already received. Please call the shop if you need to add information.')
+          : (isSpanish ? 'No pudimos enviar su solicitud. Intentelo de nuevo o llame al taller para conocer los proximos pasos.' : 'We could not send your request. Please try again or call the shop for next steps.');
         status.scrollIntoView({ block: 'nearest' });
       }
     } finally {

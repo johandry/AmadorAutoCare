@@ -78,6 +78,7 @@ For visual work, serve the repository locally and test at 320px, 375px, 768px, 1
 - S10 keeps About and Gallery in accessible pending states until authentic, permissioned projects, credentials, warranties, image rights, and review approvals are supplied.
 - S11 FAQ and privacy disclosures are implemented for the Supabase development-demo flow, including retention, contact, and disabled-feature boundaries. Real business facts and legal review remain required before production release.
 - S12 crawl controls, sitemap, favicon, and Home sharing metadata are implemented for the development demo. `AutoRepair` JSON-LD and final sharing previews remain blocked on real business facts and approved imagery.
+- S14 includes a complete Spanish development-demo route set for core pages and request journeys. The developer approved the generated demo translation; qualified human review and a named maintenance owner remain required before production release.
 - Temporary generic service illustrations appear on Home and service pages only; they are not proof of Amador Auto Care work and must be replaced before production release.
 - Analytics provider, production URL, and Spanish scope also remain unresolved.
 - GitHub Actions validates and deploys the static site to GitHub Pages on every push to `main`; GitHub Pages must be configured to use GitHub Actions as its source.

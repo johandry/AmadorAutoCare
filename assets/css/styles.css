@@ -106,6 +106,12 @@ h3 {
   text-decoration: none;
 }
 
+.language-link {
+  margin-inline-start: auto;
+  color: var(--color-action-dark);
+  font-weight: 700;
+}
+
 .nav-toggle {
   min-width: 3rem;
   min-height: 2.75rem;
