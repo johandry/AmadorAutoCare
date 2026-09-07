@@ -8,7 +8,6 @@ The values in [business-facts.json](business-facts.json) are development-demo sa
 - Mechanical, body/collision, and excluded services.
 - Emergency, unsafe-to-drive, after-hours, towing, estimate, appointment, and response-time policies.
 - Google Business Profile and review profiles.
-- Google Business Profile and review profiles.
 - Shop/team images, gallery projects, captions, and review permissions.
 
 Record each replacement with a source, approver, and approval date in [business-facts.json](business-facts.json). Do not release the demo values as production business claims.
