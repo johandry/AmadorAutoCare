@@ -39,6 +39,7 @@ jobs:
           node --test tests/mechanical-journey.test.mjs
           node --test tests/navigation-shell.test.mjs
           node --test tests/supabase-integration.test.mjs
+          node --test tests/trust-and-proof.test.mjs
           node --check assets/js/main.js
 
       - name: Configure Pages

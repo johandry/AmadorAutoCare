@@ -75,6 +75,7 @@ For visual work, serve the repository locally and test at 320px, 375px, 768px, 1
 - S07 Supabase form integration is implemented and live-validated. Completed requests are retained for 90 days and purged by a scheduled database function. New requests are reviewed at least every four hours, and `service@info.amadorautocare.com` is the monitored privacy contact.
 - S08 estimate qualification fields, accessible error states, and server-side duplicate protection are implemented and live-validated.
 - S09 appointment time-window fields, accessible validation, and server-side scheduling checks are implemented and live-validated.
+- S10 publishes only approved credential and warranty categories; Gallery remains an accessible empty state pending authentic, permissioned projects, image rights, and review approvals.
 - Analytics provider, production URL, and Spanish scope also remain unresolved.
 - GitHub Actions validates and deploys the static site to GitHub Pages on every push to `main`; GitHub Pages must be configured to use GitHub Actions as its source.
 - Next action: begin the next ready slice only when explicitly requested, keeping the Supabase request contract and published privacy disclosure synchronized.

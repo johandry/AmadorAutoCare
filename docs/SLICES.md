@@ -153,6 +153,8 @@ Status values: `DONE`, `NEXT`, `BLOCKED`, `READY`, `LATER`.
 
 **Acceptance gate:** Rights and claims are documented; responsive images have dimensions and suitable alternative text; gallery empty state remains if assets are insufficient.
 
+**Implementation note:** Approved credential and warranty categories are published on About. Gallery remains an explicit empty state until authentic, permissioned projects and image rights are supplied.
+
 ## S11: FAQ and Privacy
 
 **Status:** READY
